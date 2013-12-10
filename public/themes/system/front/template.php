@@ -1,96 +1,248 @@
-<?php include(dirname(__FILE__).'/functions.php'); ?>
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="<?php echo strtolower(config_item('charset')); ?>" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-		<title><?php echo $page_title; ?></title>
-		<meta name="viewport" content="width=device-width" />
-		<?php if (isset($page_meta)) {echo $page_meta;} ?> 
-		<!--[if lt IE 9]>
-			<script src="<?php echo $this->theme_path; ?>share-js/html5.js"></script>
-		<![endif]-->
-		
-		<link rel="stylesheet" type="text/css" href="<?php echo $this->theme_path; ?>share-css/bootstrap/css/bootstrap.min.css" />
-		<link rel="stylesheet" type="text/css" href="<?php echo $this->theme_path; ?>share-css/bootstrap/css/bootstrap-responsive.min.css" />
-		<link rel="stylesheet" type="text/css" href="<?php echo $this->theme_path; ?>front/style.css" />
-		<?php if (in_array($this->uri->uri_string(), array('/account/edit-profile'))) { ?> 
-		<link rel="stylesheet" type="text/css" href="<?php echo $this->theme_path; ?>share-js/jquery-ui/css/smoothness/jquery-ui.css" />
-		<?php } // endif; ?> 
-		<?php if (isset($page_link)) {echo $page_link;} ?> 
-		
-		<script type="text/javascript" src="<?php echo $this->theme_path; ?>share-js/jquery.min.js"></script>
-		<?php if (in_array($this->uri->uri_string(), array('/account/edit-profile'))) { ?> 
-		<script type="text/javascript" src="<?php echo $this->theme_path; ?>share-js/jquery-ui/jquery-ui.min.js"></script>
-		<?php } // endif; ?> 
-		<script type="text/javascript" src="<?php echo $this->theme_path; ?>share-css/bootstrap/js/bootstrap.min.js"></script>
-		<?php if (isset($page_script)) {echo $page_script;} ?> 
-		
-		<script type="text/javascript">
-			// declare variable for use in .js file
-			var base_url = '<?php echo $this->base_url; ?>';
-			var site_url = '<?php echo site_url('/'); ?>';
-			var csrf_name = '<?php echo config_item('csrf_token_name'); ?>';
-			var csrf_value = '<?php echo $this->security->get_csrf_hash(); ?>';
-		</script>
-		
-		<?php if (isset($in_head_elements)) {echo $in_head_elements;} ?> 
-		<?php echo $this->modules_plug->do_filter('front_html_head'); ?> 
-	</head>
-	<body class="body-class<?php echo $this->html_model->gen_front_body_class('theme-'.$this->theme_system_name); ?>">
-		
-		
-		<div class="container page-container">
-			<header class="row-fluid page-header-row clearfix">
-				<div class="span12">
-					<h1 class="pull-left brand"><?php echo anchor(base_url(), $this->config_model->loadSingle('site_name'), array('rel' => 'home', 'class' => 'site-name site-title')); ?></h1>
-					<div class="pull-right account-header-area">
-						<?php
-						if ($this->account_model->isMemberLogin()) {
-							echo anchor('account/edit-profile', lang('account_edit_profile'));
-							echo ' '.anchor('account/logout', lang('account_logout'));
-						} else {
-							echo anchor('account/register', lang('account_register'));
-							echo ' '.anchor('account/login', lang('account_login'));
-						}
-						?> 
-					</div>
-					<div class="clearfix"></div>
-					<nav role="navigation" class="navigation site-navigation">
-						<?php echo $area_navigation; ?> 
-						<div class="clearfix"></div>
-					</nav>
-				</div>
-			</header>
-			
-			<div class="row-fluid page-content-row">
-				<div class="span9 primary-column">
-					<?php if ($area_breadcrumb != null): ?><div class="breadcrumb-row"><?php echo $area_breadcrumb; ?></div><?php endif; ?> 
-					
-					<?php echo $page_content; ?> 
-					
-				</div>
-				<div class="span3 sidebar-column">
-					<?php echo $area_sidebar; ?> 
-				</div>
-				<div class="clearfix"></div>
-			</div>
-		</div>
-		<footer class="page-footer-row">
-			<div class="container">
-				<div class="row">
-					<div class="span12">
-						<?php if ($area_footer != null) { ?> 
-						<div class="pull-right area-footer">
-							<?php echo $area_footer; ?> 
-						</div>
-						<?php } // endif; ?> 
-						<small>Powered by <a href="http://www.agnicms.org">Agni CMS</a></small>
-					</div>
-				</div>
-			</div>
-		</footer>
-		
-		
-	</body>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>Banda - Music Magazine and Shop</title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="<?php echo $this->theme_path; ?>bootstrap-3.0.0/dist/css/bootstrap.css" rel="stylesheet">
+
+        <!-- Custom styles for this template-->
+        <link href="<?php echo $this->theme_path; ?>style.css" rel="stylesheet">
+
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;subset=latin,cyrillic-ext,cyrillic' rel='stylesheet' type='text/css'>
+
+    	<link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+        <link href="<?php echo $this->theme_path; ?>js/swiperjs/idangerous.swiper.css" rel="stylesheet">
+        <link href="<?php echo $this->theme_path; ?>js/big-video/css/bigvideo.css" rel="stylesheet">
+
+        
+        <!-- Client side less compiling 
+        <link rel="stylesheet/less" type="text/css" href="style.less">-->
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+          <script src="<?php echo $this->theme_path; ?>bootstrap-3.0.0/assets/js/html5shiv.js"></script>
+          <script src="<?php echo $this->theme_path; ?>bootstrap-3.0.0/assets/js/respond.min.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+    <!-- BEGIN banner area -->
+
+    <div class="top-banner-area">
+        <a href="#"><img src="<?php echo $this->theme_path; ?>images/logo_web.png" alt="Logo"></a>
+
+    </div>
+
+    <!-- END banner area -->
+
+    <div class="content-wrap">
+        <div class="main-container">
+            <header>
+                <nav>
+                    <ul>
+                        <li class="current-item">
+                            <a href="<?php echo site_url(); ?>"><i class="icon-home"></i>Home</a>
+                        </li>
+                        <li>
+                            <a href="#">NEWS</a>
+                        </li>
+                        <li>
+                            <a href="#">SHOP</a>
+                        </li>
+                        <li>
+                            <a href="#">COUPON</a>
+                        </li>
+                        <li>
+                            <a href="#">CONTACT US</a>
+                        </li>
+  
+                    </ul>
+                </nav>
+            </header>
+            
+            <!-- BEGIN mobile nav -->
+
+            <select class="bb-mobile-nav">
+                <option>Item 1</option>
+                <option>Item 2</option>
+                <option>Item 3</option>
+            </select>
+
+            <!-- END mobile nav -->
+
+            <span class="clear"></span>
+
+            <!-- BEGIN page content -->
+
+            <div class="row">
+
+            <!-- BEGIN content -->
+
+                <div class="col-md-12">
+                    <content>
+
+                        <div class="row content-row">
+
+                            <div class="col-md-4">
+                                <div class="album-wrap">
+                                    <img src="http://fpoimg.com/250x250?text=Preview" alt="demo image">
+                                    <div class="album-caption">
+                                        <h4><a href="#">ชื่อร้านค้า</a></h4>
+                                        <span>Band Name</span>
+                                    </div>
+                                    <a href="#" class="tracks-list"></a>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="album-wrap">
+                                    <img src="http://fpoimg.com/250x250?text=Preview" alt="demo image">
+                                    <div class="album-caption">
+                                        <h4><a href="#">ชื่อร้านค้า</a></h4>
+                                        <span>The Band</span>
+                                    </div>
+                                    <a href="#" class="tracks-list"></a>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="album-wrap">
+                                    <img src="http://fpoimg.com/250x250?text=Preview" alt="demo image">
+                                    <div class="album-caption">
+                                        <h4><a href="#">ชื่อร้านค้า</a></h4>
+                                        <span>Bando</span>
+                                    </div>
+                                    <a href="#" class="tracks-list"></a>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row content-row">
+
+                            <div class="col-md-4">
+                                <div class="album-wrap">
+                                    <img src="http://fpoimg.com/250x250?text=Preview" alt="demo image">
+                                    <div class="album-caption">
+                                        <h4><a href="#">ชื่อร้านค้า</a></h4>
+                                        <span>Bandata</span>
+                                    </div>
+                                    <a href="#" class="tracks-list"></a>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="album-wrap">
+                                    <img src="http://fpoimg.com/250x250?text=Preview" alt="demo image">
+                                    <div class="album-caption">
+                                        <h4><a href="#">ชื่อร้านค้า</a></h4>
+                                        <span>Band Name</span>
+                                    </div>
+                                    <a href="#" class="tracks-list"></a>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="album-wrap">
+                                    <img src="http://fpoimg.com/250x250?text=Preview" alt="demo image">
+                                    <div class="album-caption">
+                                        <h4><a href="#">ชื่อร้านค้า</a></h4>
+                                        <span>The Strange Band</span>
+                                    </div>
+                                    <a href="#" class="tracks-list"></a>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row content-row">
+
+                            <div class="col-md-4">
+                                <div class="album-wrap">
+                                    <img src="http://fpoimg.com/250x250?text=Preview" alt="demo image">
+                                    <div class="album-caption">
+                                        <h4><a href="#">ชื่อร้านค้า</a></h4>
+                                        <span>Band Name</span>
+                                    </div>
+                                    <a href="#" class="tracks-list"></a>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="album-wrap">
+                                    <img src="http://fpoimg.com/250x250?text=Preview" alt="demo image">
+                                    <div class="album-caption">
+                                        <h4><a href="#">ชื่อร้านค้า</a></h4>
+                                        <span>The Crazy Band</span>
+                                    </div>
+                                    <a href="#" class="tracks-list"></a>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="album-wrap">
+                                    <img src="http://fpoimg.com/250x250?text=Preview" alt="demo image">
+                                    <div class="album-caption">
+                                        <h4><a href="#">ชื่อร้านค้า</a></h4>
+                                        <span>Band Name</span>
+                                    </div>
+                                    <a href="#" class="tracks-list"></a>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </content>
+                </div>
+
+                <!-- END content -->
+
+            </div>
+            <span class="clear"></span>
+
+            <!-- END page content -->
+
+        </div>
+
+        <!-- BEGIN footer -->
+
+        <footer>
+
+
+        </footer>
+
+        <!-- END footer -->
+
+        <div class="copyrights-content">
+            CREATE BY GROUP STUDEN SIAM UNIVERSITY
+        </div>
+    </div>
+
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="<?php echo $this->theme_path; ?>bootstrap-3.0.0/assets/js/jquery.js"></script>
+    <script src="<?php echo $this->theme_path; ?>bootstrap-3.0.0/dist/js/bootstrap.min.js"></script>
+
+    
+	<script type="text/javascript" src="<?php echo $this->theme_path; ?>js/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript" src="<?php echo $this->theme_path; ?>js/jquery-ui-1.10.3.min.js"></script>
+	<script type="text/javascript" src="<?php echo $this->theme_path; ?>js/custom.js"></script>
+    <script type="text/javascript" src="<?php echo $this->theme_path; ?>js/jplayer/jquery.jplayer.min.js"></script>
+    <script type="text/javascript" src="<?php echo $this->theme_path; ?>js/swiperjs/idangerous.swiper.js"></script>
+    <script src="<?php echo $this->theme_path; ?>js/modernizr-2.5.3.min.js"></script>
+    <script src="http://vjs.zencdn.net/4.0/video.js"></script>
+    <script src="<?php echo $this->theme_path; ?>js/big-video/lib/bigvideo.js"></script>
+    <script src="<?php echo $this->theme_path; ?>js/imagesloaded.pkgd.js"></script>
+    
+  </body>
 </html>
