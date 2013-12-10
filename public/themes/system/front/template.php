@@ -6,7 +6,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Banda - Music Magazine and Shop</title>
+        <title>Easy Trade</title>
 
         <!-- Bootstrap core CSS -->
         <link href="<?php echo $this->theme_path; ?>bootstrap-3.0.0/dist/css/bootstrap.css" rel="stylesheet">
