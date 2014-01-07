@@ -31,16 +31,16 @@ class index extends MY_Controller
 	}// __construct
 	
 	
-	public function _remap($att1 = '', $att2 = '') 
-	{
-		// if there is uri like this http://domain/installed_dir/index, http://domain/installed_dir/index/index
-		// redirect to base url to prevent duplicate content. good for seo.
-		if ($this->uri->segment(1) != null) {
-			redirect(base_url());
-		}
+	// public function _remap($att1 = '', $att2 = '') 
+	// {
+	// 	// if there is uri like this http://domain/installed_dir/index, http://domain/installed_dir/index/index
+	// 	// redirect to base url to prevent duplicate content. good for seo.
+	// 	if ($this->uri->segment(1) != null) {
+	// 		redirect(base_url());
+	// 	}
 		
-		$this->index();
-	}// _remap
+	// 	$this->index();
+	// }// _remap
 	
 	
 	public function index() 
@@ -106,5 +106,13 @@ class index extends MY_Controller
 		$this->generate_page('front/templates/index/index_view', $output);
 	}// index
 	
+
+
+	public function register()
+	{
+		$output = '';
+		$this->generate_page('front/templates/index/register_view', $output);
+	
+	} // END FUNCTION register
 	
 }
