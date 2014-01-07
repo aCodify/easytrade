@@ -787,3 +787,21 @@ CREATE TABLE IF NOT EXISTS `an_url_alias` (
 -- Dumping data for table `an_url_alias`
 --
 
+
+
+CREATE TABLE IF NOT EXISTS `et_data_account` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL DEFAULT '',
+  `name_shop` varchar(255) NOT NULL DEFAULT '',
+  `surname` varchar(255) NOT NULL DEFAULT '',
+  `store_address` text NOT NULL,
+  `province` varchar(255) NOT NULL DEFAULT '',
+  `postal_code` varchar(255) NOT NULL DEFAULT '',
+  `category` varchar(255) NOT NULL DEFAULT '',
+  `username` varchar(255) NOT NULL DEFAULT '',
+  `email` varchar(255) NOT NULL DEFAULT '',
+  `image` varchar(255) NOT NULL DEFAULT '',
+  `password` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+

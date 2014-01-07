@@ -111,8 +111,35 @@ class index extends MY_Controller
 	public function register()
 	{
 		$output = '';
+		$output['success'] = '';
+		$this->load->helper( 'form' );
+
+		if ( $this->input->post() ) 
+		{
+			$data = $this->input->post();
+
+			$this->db->insert( 'data_account' , $data );
+
+			$output['success'] = 'ได้ทำการบันทึกข้อมูลแล้ว';
+
+		}
+
 		$this->generate_page('front/templates/index/register_view', $output);
 	
 	} // END FUNCTION register
+
+
+	public function shop( )
+	{
+		$output = '';
+
+		$query = $this->db->get( 'data_account' );
+		$data = $query->result();
+
+		$output['show_data'] = $data;
+
+		$this->generate_page('front/templates/index/shop_view', $output);
+	
+	} // END FUNCTION shop
 	
 }

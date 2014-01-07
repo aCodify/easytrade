@@ -58,7 +58,7 @@
                             <a href="#">NEWS</a>
                         </li>
                         <li>
-                            <a href="#">SHOP</a>
+                            <a href="<?php echo site_url( 'index/shop' ) ?>">SHOP</a>
                         </li>
                         <li>
                             <a href="#">COUPON</a>
