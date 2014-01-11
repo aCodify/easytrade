@@ -11,8 +11,6 @@
             </div>
 
         <?php } ?>
-    
-
 
     </div>
     
@@ -67,6 +65,5 @@
     <h5>E-mail</h5>
 
     <div>i@me.com</div>
-
 
 </content>
