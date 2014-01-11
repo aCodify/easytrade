@@ -789,7 +789,7 @@ CREATE TABLE IF NOT EXISTS `an_url_alias` (
 
 
 
-CREATE TABLE IF NOT EXISTS `et_data_account` (
+CREATE TABLE IF NOT EXISTS `an_data_account` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL DEFAULT '',
   `name_shop` varchar(255) NOT NULL DEFAULT '',
