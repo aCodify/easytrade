@@ -102,6 +102,8 @@ class index extends MY_Controller
 		// script tags
 		// end head tags output ##############################
 		
+		$output['hover_menu'] = 'HOME';
+
 		// output
 		$this->generate_page('front/templates/index/index_view', $output);
 	}// index
@@ -112,6 +114,7 @@ class index extends MY_Controller
 	{
 		$output = '';
 		$output['success'] = '';
+		$output['hover_menu'] = '';
 		$this->load->helper( 'form' );
 
 		if ( $this->input->post() ) 
@@ -129,9 +132,19 @@ class index extends MY_Controller
 	} // END FUNCTION register
 
 
-	public function shop( )
+	public function shop( $type = '' , $id = '' )
 	{
 		$output = '';
+		$output['hover_menu'] = 'SHOP';
+
+
+		if ( $type == 'detail' ) 
+		{
+			$this->generate_page('front/templates/shop/shop_detail_view', $output);
+			return true;
+		}
+
+
 
 		$query = $this->db->get( 'data_account' );
 		$data = $query->result();
@@ -141,5 +154,41 @@ class index extends MY_Controller
 		$this->generate_page('front/templates/index/shop_view', $output);
 	
 	} // END FUNCTION shop
+
+
+
+	public function news()
+	{
+	
+		$output = '';
+
+		$output['hover_menu'] = 'NEWS';
+
+		$this->generate_page('front/templates/news/news_index_view', $output);
+	
+	} // END FUNCTION news
+
+
+	public function coupon( $id = '' )
+	{
+	
+		$output = '';
+
+		$output['hover_menu'] = 'COUPON';
+
+		$this->generate_page('front/templates/coupon/index_coupon_view', $output);
+	
+	} // END FUNCTION coupon
+
+	public function contact( )
+	{
+	
+		$output = '';
+
+		$output['hover_menu'] = 'CONTACT US';
+
+		$this->generate_page('front/templates/contact/index_contact_view', $output);
+	
+	} // END FUNCTION contact
 	
 }
