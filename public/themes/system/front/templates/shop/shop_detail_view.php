@@ -26,7 +26,7 @@
                 <span class="month">Oct</span>
                 <span class="details"></span> -->
             </div>
-            <div class="details">
+            <div class="details" style="min-height: 9em;">
                 <h1><a href="#">ส่วนลดส่งท้ายปี 15%</a></h1>
                 <span>เมื่อซื้อสินค้า ตั้งแต่ 5,000 บาท ขึ้นไป รับส่วนลดทันที 15 %</span>
                 <div class="buttons">

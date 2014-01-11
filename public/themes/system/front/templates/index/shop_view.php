@@ -46,14 +46,19 @@
 
 
 
-
+<h4>ร้านค้า : <span style="color:#E74C3C">อุปกรณ์แต่งบ้าน</span></h4>
+<hr>
 <content>
 
     <div class="row content-row">
 
-        <div class="col-md-4 box-page-shop" >
+        <?php for ( $i=1; $i <= 9 ; $i++ ) { ?>
+            
+        
+
+        <div class="col-md-3 box-page-shop" >
             <div class="album-wrap">
-                <a href="<?php echo site_url( 'index/shop/detail' ) ?>"><img alt="demo image" src="<?php echo $this->theme_path; ?>images/test-image-22.png"></a>
+                <a href="<?php echo site_url( 'index/shop/detail' ) ?>"><img alt="demo image" src="http://fpoimg.com/200x200?text=Preview"></a>
                 <div class="album-caption">
                     <h4><a href="#">Wood Floor</a></h4>
                     <span>Band Name</span>
@@ -61,89 +66,8 @@
             </div>
         </div>
 
-        <div class="col-md-4 box-page-shop" >
-            <div class="album-wrap">
-                <a href="<?php echo site_url( 'index/shop/detail' ) ?>"><img alt="demo image" src="<?php echo $this->theme_path; ?>images/test-image-23.png"></a>
-                <div class="album-caption">
-                    <h4><a href="#">Blue Lights</a></h4>
-                    <span>The Band</span>
-                </div>
-            </div>
-        </div>
 
-        <div class="col-md-4 box-page-shop" >
-            <div class="album-wrap">
-                <a href="<?php echo site_url( 'index/shop/detail' ) ?>"><img alt="demo image" src="<?php echo $this->theme_path; ?>images/test-image-24.png"></a>
-                <div class="album-caption">
-                    <h4><a href="#">Red Lips</a></h4>
-                    <span>Bando</span>
-                </div>
-            </div>
-        </div>
-
-
-
-        <div class="col-md-4 box-page-shop" >
-            <div class="album-wrap">
-                <a href="<?php echo site_url( 'index/shop/detail' ) ?>"><img alt="demo image" src="<?php echo $this->theme_path; ?>images/test-image-25.png"></a>
-                <div class="album-caption">
-                    <h4><a href="#">Red Guitar</a></h4>
-                    <span>Bandata</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-4 box-page-shop" >
-            <div class="album-wrap">
-                <a href="<?php echo site_url( 'index/shop/detail' ) ?>"><img alt="demo image" src="<?php echo $this->theme_path; ?>images/test-image-26.png"></a>
-                <div class="album-caption">
-                    <h4><a href="#">Green Grass</a></h4>
-                    <span>Band Name</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-4 box-page-shop" >
-            <div class="album-wrap">
-                <a href="<?php echo site_url( 'index/shop/detail' ) ?>"><img alt="demo image" src="<?php echo $this->theme_path; ?>images/test-image-27.png"></a>
-                <div class="album-caption">
-                    <h4><a href="#">A cup of milk</a></h4>
-                    <span>The Strange Band</span>
-                </div>
-            </div>
-        </div>
-
-
-
-        <div class="col-md-4 box-page-shop" >
-            <div class="album-wrap">
-                <a href="<?php echo site_url( 'index/shop/detail' ) ?>"><img alt="demo image" src="<?php echo $this->theme_path; ?>images/test-image-28.png"></a>
-                <div class="album-caption">
-                    <h4><a href="#">Album Name</a></h4>
-                    <span>Band Name</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-4 box-page-shop" >
-            <div class="album-wrap">
-                <a href="<?php echo site_url( 'index/shop/detail' ) ?>"><img alt="demo image" src="<?php echo $this->theme_path; ?>images/test-image-29.png"></a>
-                <div class="album-caption">
-                    <h4><a href="#">Album Name</a></h4>
-                    <span>The Crazy Band</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-4 box-page-shop" >
-            <div class="album-wrap">
-                <a href="<?php echo site_url( 'index/shop/detail' ) ?>"><img alt="demo image" src="<?php echo $this->theme_path; ?>images/test-image-30.png"></a>
-                <div class="album-caption">
-                    <h4><a href="#">Strange Face</a></h4>
-                    <span>Band Name</span>
-                </div>
-            </div>
-        </div>
+        <?php } ?>
 
     </div>
 
