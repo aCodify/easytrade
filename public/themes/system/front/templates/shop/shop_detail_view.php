@@ -1,6 +1,11 @@
 <div class="col-md-12">
+<?php
+$this->db->where( 'id', $show_data->type );
+$query = $this->db->get( 'type_shop' );
+$data_type = $query->row();
+?>
 
-<h4>ร้านค้า : อุปกรณ์แต่งบ้าน / <span style="color:#E74C3C"><?php echo $show_data->name_shop ?></span></h4>
+<h4>ร้านค้า : <?php echo $data_type->name_shop ?> / <span style="color:#E74C3C"><?php echo $show_data->name_shop ?></span></h4>
 <hr>
 
 <content>
