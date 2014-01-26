@@ -104,6 +104,35 @@ class index extends MY_Controller
 		
 		$output['hover_menu'] = 'HOME';
 
+
+
+		$this->db->where( 'account_id !=', 1 );
+		$this->db->where( 'account_status', 1 );
+		$this->db->order_by('account_id', 'RANDOM');
+		$this->db->limit(6);
+		$query = $this->db->get( 'accounts' );
+		$output['show_account'] = $query->result();
+
+
+		$this->db->where( 'account_id !=', 1 );
+		$this->db->where( 'account_status', 1 );
+		$this->db->order_by('count_view', 'DESC');
+		$this->db->limit(3);
+		$query = $this->db->get( 'accounts' );
+		$output['most_popular'] = $query->result();
+
+		$this->db->where( 'account_id !=', 1 );
+		$this->db->where( 'account_status', 1 );
+		$this->db->order_by('account_id', 'DESC');
+		$this->db->limit(3);
+		$query = $this->db->get( 'accounts' );
+		$output['latest_shop'] = $query->result();
+
+
+
+
+
+
 		// output
 		$this->generate_page('front/templates/index/index_view', $output);
 	}// index
@@ -132,29 +161,57 @@ class index extends MY_Controller
 	} // END FUNCTION register
 
 
-	public function shop( $type = '' , $id = '' )
+	public function shop( $id = '' )
 	{
+
+		if ( empty( $id ) ) 
+		{
+			redirect( site_url() );
+		}
+
 		$output = '';
 		$output['hover_menu'] = 'SHOP';
 
-
-		if ( $type == 'detail' ) 
-		{
-			$this->generate_page('front/templates/shop/shop_detail_view', $output);
-			return true;
-		}
-
-
-
-		$query = $this->db->get( 'data_account' );
+		$this->db->where( 'account_id !=', 1 );
+		$this->db->where( 'account_status', 1 );
+		$this->db->where( 'type', $id );
+		$query = $this->db->get( 'accounts' );
 		$data = $query->result();
-
 		$output['show_data'] = $data;
+
+		$this->db->where( 'id', $id );
+		$query = $this->db->get( 'type_shop' );
+		$data = $query->row();
+		$output['type'] = $data;
+
 
 		$this->generate_page('front/templates/index/shop_view', $output);
 	
 	} // END FUNCTION shop
 
+
+	public function shop_detail( $id = '' )
+	{
+		$output['hover_menu'] = 'SHOP';
+		if ( empty( $id ) ) 
+		{
+			redirect( site_url() );
+		}
+
+		$this->db->where( 'account_id', $id );
+		$this->db->set( 'count_view', 'count_view+1', false );
+		$this->db->update( 'accounts' );
+
+		$this->db->where( 'account_id', $id );
+		$query = $this->db->get( 'accounts' );
+		$data = $query->row();
+
+		$output['show_data'] = $data;
+
+		$this->generate_page('front/templates/shop/shop_detail_view', $output);
+
+	
+	} // END FUNCTION shop_detail
 
 
 	public function news()

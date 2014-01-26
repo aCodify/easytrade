@@ -5,23 +5,67 @@
 
                         <div class="bb-slider-2 bluebox-slider" data-direction-nav=".arrow-links-wrap" data-control-nav=".slider-control-nav">
                             <div class="swiper-slide set_header">
-                                <img src="http://fpoimg.com/600x150?text=Preview" class=" img-preload" alt="sample image" data-aspectratio="1.3333" id="img-52552406dfa3e">
+                                <img src="public/images/banner.jpg" class=" img-preload" alt="sample image" data-aspectratio="1.3333" id="img-52552406dfa3e">
                                 <div class="slider-caption">
-                                    <h4>
+                                    <!-- <h4>
                                         <a href="#"><span>Banda - HTML5 Music Magazine<span></span></span></a>
-                                    </h4>
+                                    </h4> -->
                                 </div>
                             </div>
-                            <div style="float: right;">
-                                <div>
-                                    <span style="position: relative; width: 57px; display: inline-block;" >Login</span> <input type="text" clear="set_input" style="width: 15em;">
+
+                            <?php $info = $this->account_model->get_account_cookie( 'member' ) ?>
+
+                            <?php if ( empty( $info ) ): ?>
+    
+                                <?php echo form_open( site_url( 'account/login' ) , array('class' => 'form-horizontal')); ?> 
+                                <div style="float: right;">
+                                    <div>
+                                        <span style="position: relative; width: 57px; display: inline-block;" >Login</span> <input name="account_username" type="text" clear="set_input" style="width: 15em;">
+                                    </div>
+                                    <div>
+                                        <span style="position: relative; width: 57px; display: inline-block;" >Password</span>  <input name="account_password" type="password" clear="set_input" style="width: 15em;">
+                                    </div>
+                                    <button class="btn-default cursor_pointer "  style="float: right;" >Login</button>
+                                    <a style="float: right; margin-right: 25px;" class="btn-default" href="<?php echo site_url( 'account/register' ) ?>" style="margin-left: 120px;"> Register </a>
                                 </div>
-                                <div>
-                                    <span style="position: relative; width: 57px; display: inline-block;" >Password</span>  <input type="text" clear="set_input" style="width: 15em;">
+                                <?php echo form_close(); ?>       
+                                
+                            <?php else: ?>
+
+                                <?php  
+
+                                $this->db->where( 'account_id', $info['id'] );
+
+                                $query = $this->db->get( 'accounts' );
+
+                                $data = $query->row();
+
+                                ?>
+
+                                <div style="float: right;">
+                                    <div style="position: relative; float: left; left: -3em;" >
+                                        <?php if ( ! empty( $data->account_avatar ) ): ?>
+                                            <img src="<?php echo base_url( 'public/upload/img_cover/'.$data->account_avatar ) ?>" alt="" style="width: 150px;" >
+                                        <?php endif ?>
+                                    </div>
+                                    <div style="float: left; display: inline-block;" >
+                                        <span style="display: table-caption; position: relative; width: 90px; margin-left: -44px;" >ร้าน</span> <span></span>
+                                    </div>
+                                    <div>
+                                        <span style="display: table-caption; position: relative; width: 69px; margin-left: -60px;" >
+                                            <a href="<?php echo site_url( 'account/edit_profile' ) ?>"><?php echo $data->name_shop ?></a>
+                                        </span>
+                                    </div>
+
+                                    <div>
+                                        <span style="display: table-caption; position: relative; width: 69px; margin-left: -44px;" ><a class="btn btn-primary" style="margin-top: 1em;margin-left:14px;" href="<?php echo site_url( 'account/logout' ) ?>">ออกจากระบบ</a></span>
+                                    </div>
+                                    
                                 </div>
-                                <span class="btn-default cursor_pointer "  style="float: right;" >Login</span>
-                            </div>
-                                   
+
+                            <?php endif ?>
+
+
 
                         </div>
 
@@ -29,148 +73,65 @@
 
                         <div class="bluebox-heading">
                             <h3>Featured</h3>
-                            <!-- <a href="#"><i class="icon-list-ul"></i>All News +</a> -->
+                            <!-- <a href="#"></i>All News +</a> -->
                         </div>
 
                         <div class="row content-row">
 
-                            <div class="col-md-4">
-                                <section class="featured-post">
-                                    <a class="image-wrap" href="#">
-                                        <img src="<?php echo $this->theme_path; ?>images/test-image-42.png" alt="demo image">
-                                        <span class="image-details"></span>
-                                    </a>
-                                    <h1><a href="#">Bajah Brings African Music to Brooklyn Studio Compilation</a></h1>
-                                    <p>In continuing with our ‘In Session’ documentary series highlighting the production work of acclaimed engineer... </p>
-                                    <div class="bluebox-info-line">
-                                        <span class="featured-post-date">13 Sep 2013</span>
-                                        <span class="featured-post-author">Antoni Botev</span>
-                                        <a class="more-link" href="#">Read More +</a>
-                                    </div>
-                                </section>
-                            </div>
-
-                            <div class="col-md-4">
-                                <section class="featured-post">
-                                    <a class="image-wrap" href="#">
-                                        <img src="<?php echo $this->theme_path; ?>images/test-image-43.png" alt="demo image">
-                                        <span class="image-details"></span>
-                                    </a>
-                                    <h1><a href="#">Song Premiere: Sarah Brightman – “Glosoli” (Eyes Remix)</a></h1>
-                                    <p>Sarah Brightman, the voice behind Andrea Bocelli‘s, “Time To Say Goodbye“, as well as many of other timeless... </p>
-                                    <div class="bluebox-info-line">
-                                        <span class="featured-post-date">19 Sep 2013</span>
-                                        <span class="featured-post-author">Antoni Botev</span>
-                                        <a class="more-link" href="#">Read More +</a>
-                                    </div>
-                                </section>
-                            </div>
-
-                            <div class="col-md-4">
-                                <section class="featured-post">
-                                    <a class="image-wrap" href="#">
-                                        <img src="<?php echo $this->theme_path; ?>images/test-image-43.png" alt="demo image">
-                                        <span class="image-details"></span>
-                                    </a>
-                                    <h1><a href="#">Song Premiere: Sarah Brightman – “Glosoli” (Eyes Remix)</a></h1>
-                                    <p>Sarah Brightman, the voice behind Andrea Bocelli‘s, “Time To Say Goodbye“, as well as many of other timeless... </p>
-                                    <div class="bluebox-info-line">
-                                        <span class="featured-post-date">19 Sep 2013</span>
-                                        <span class="featured-post-author">Antoni Botev</span>
-                                        <a class="more-link" href="#">Read More +</a>
-                                    </div>
-                                </section>
-                            </div>
-                        </div>
-
-                        <div class="row content-row">
-
+                            <?php foreach ( $show_account as $key => $value ): ?>
+                                
                             <div class="col-md-4">
                                 <div class="gallery-wrap">
                                     <div class="image-wrap">
-                                        <a class="image-link" href="#">
-                                            <img src="<?php echo $this->theme_path; ?>images/test-image-44.png" alt="demo image">
-                                            <span class="image-details"></span>
+                                        <a class="image-link" href="<?php echo site_url( 'index/shop_detail/'.$value->account_id ) ?>">
+                                            <?php if ( ! empty( $value->account_avatar ) ): ?>
+                                                <img src="<?php echo base_url( 'public/upload/img_cover/'.$value->account_avatar ) ?>" alt="demo image">
+                                            <?php else: ?>
+                                                <img src="http://fpoimg.com/150x150?text=Logo" alt="">
+                                            <?php endif ?>
+                                            <span class="image-details"></span> 
                                         </a>
                                         <div class="gallery-caption">
                                             <div>
-                                                <h4><a href="#">Paul Di'Anno Farewell Tour</a></h4>
-                                                <span>18 Photos</span>
+                                                <h4><a href="#"><?php echo $value->name_shop ?></a></h4>
+                                                <span><?php echo $value->detail_shop ?></span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col-md-4">
-                                <div class="gallery-wrap">
-                                    <div class="image-wrap">
-                                        <a class="image-link" href="#">
-                                            <img src="<?php echo $this->theme_path; ?>images/test-image-45.png" alt="demo image">
-                                            <span class="image-details"></span>
-                                        </a>
-                                        <div class="gallery-caption">
-                                            <div>
-                                                <h4><a href="#">Leverage Models</a></h4>
-                                                <span>7 Photos</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <?php endforeach ?>
 
-                            <div class="col-md-4">
-                                <div class="gallery-wrap">
-                                    <div class="image-wrap">
-                                        <a class="image-link" href="#">
-                                            <img src="<?php echo $this->theme_path; ?>images/test-image-45.png" alt="demo image">
-                                            <span class="image-details"></span>
-                                        </a>
-                                        <div class="gallery-caption">
-                                            <div>
-                                                <h4><a href="#">Leverage Models</a></h4>
-                                                <span>7 Photos</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
 
                         <div class="row content-row">
 
                             <div class="col-md-4">
                                 <div class="bluebox-heading">
-                                    <h3>Latest News</h3>
-                                    <a href="#"><i class="icon-list-ul"></i>All News +</a>
+                                    <h3>Latest Shop</h3>
+                                    <a href="#"></i>All +</a>
                                 </div>
                                 <ul class="news-list">
-                                    <li>
-                                        <a href="#" class="image-wrap">
-                                            <img src="<?php echo $this->theme_path; ?>images/test-image-46.png" alt="demo image">
-                                            <span class="image-details"></span>
-                                        </a>
-                                        <h4><a href="#">Brandon & Leah Premiere “Showstopper”</a></h4>
-                                        <span>21 AUG 2013 / 8 COMMENTS</span>
-                                    </li>
 
+                                    <?php foreach ( $latest_shop as $key => $value ): ?>
+                                        
                                     <li>
-                                        <a href="#" class="image-wrap">
-                                            <img src="<?php echo $this->theme_path; ?>images/test-image-47.png" alt="demo image">
+                                        <a href="<?php echo site_url( 'index/shop_detail/'.$value->account_id ) ?>" class="image-wrap">
+                                            <?php if ( ! empty( $value->account_avatar ) ): ?>
+                                                <img src="<?php echo base_url( 'public/upload/img_cover/'.$value->account_avatar ) ?>" alt="" style="width:60px;">
+                                            <?php else: ?>
+                                                <img src="<?php echo base_url( 'public/images/shop.jpg' ) ?>" alt="demo image" style="width:60px;">
+                                            <?php endif ?>
                                             <span class="image-details"></span>
                                         </a>
-                                        <h4><a href="#">From Russia With Beats</a></h4>
-                                        <span>6 AUG 2013 / 9 COMMENTS</span>
+                                        <h4><a href="<?php echo site_url( 'index/shop_detail/'.$value->account_id ) ?>"><?php echo $value->name_shop ?></a></h4>
+                                        <span><?php echo limit_text( $value->detail_shop , 40 ) ?></span>
                                     </li>
+                                    <?php endforeach ?>
 
-                                    <li>
-                                        <a href="#" class="image-wrap">
-                                            <img src="<?php echo $this->theme_path; ?>images/test-image-10.png" alt="demo image">
-                                            <span class="image-details"></span>
-                                        </a>
-                                        <h4><a href="#">Stream Tedo Stone’s “Good Go Bad”</a></h4>
-                                        <span>3 July 2013 / 7 COMMENTS</span>
-                                    </li>
+
+
                                 </ul>
                                 <span class="clear"></span>
                             </div>
@@ -179,72 +140,61 @@
                             <div class="col-md-4">
                                 <div class="bluebox-heading">
                                     <h3>Most Popular</h3>
-                                    <a href="#"><i class="icon-list-ul"></i>All News +</a>
+                                    <a href="#"></i>All +</a>
                                 </div>
 
                                 <ul class="news-list">
+                                    <?php foreach ( $most_popular as $key => $value ): ?>
+                                    <li>
+                                        <a href="<?php echo site_url( 'index/shop_detail/'.$value->account_id ) ?>" class="image-wrap">
+                                            <?php if ( ! empty( $value->account_avatar ) ): ?>
+                                                <img src="<?php echo base_url( 'public/upload/img_cover/'.$value->account_avatar ) ?>" alt="" style="width:60px;">
+                                            <?php else: ?>
+                                                <img src="<?php echo base_url( 'public/images/shop.jpg' ) ?>" alt="demo image" style="width:60px;">
+                                            <?php endif ?>
+                                            <span class="image-details"></span>
+                                        </a>
+                                        <h4><a href="<?php echo site_url( 'index/shop_detail/'.$value->account_id ) ?>"><?php echo $value->name_shop ?></a></h4>
+                                        <span><?php echo limit_text( $value->detail_shop , 40 ) ?></span>
+                                    </li>
+                                    <?php endforeach ?>
 
-                                    <li>
-                                        <a href="#" class="image-wrap">
-                                            <img src="<?php echo $this->theme_path; ?>images/test-image-48.png" alt="demo image">
-                                            <span class="image-details"></span>
-                                        </a>
-                                        <h4><a href="#">Discovery of the Week: The Vim Dicta</a></h4>
-                                        <span>18 Jun 2013 / 35 COMMENTS</span>
-                                    </li>
-
-                                    <li>
-                                        <a href="#" class="image-wrap">
-                                            <img src="<?php echo $this->theme_path; ?>images/test-image-7.png" alt="demo image">
-                                            <span class="image-details"></span>
-                                        </a>
-                                            <h4><a href="#">Make it easy to live well</a></h4>
-                                            <span>7 MAY 2013 / 13 COMMENTS</span>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="image-wrap">
-                                            <img src="<?php echo $this->theme_path; ?>images/test-image-49.png" alt="demo image">
-                                            <span class="image-details"></span>
-                                        </a>
-                                        <h4><a href="#">Exploring Unchartered Territories</a></h4>
-                                        <span>25 Mar / 9 COMMENTS</span>
-                                    </li>
                                 </ul>
                                 <span class="clear"></span>
                             </div>
 
                             <div class="col-md-4">
                                 <div class="bluebox-heading">
-                                    <h3>Most Popular</h3>
-                                    <a href="#"><i class="icon-list-ul"></i>All News +</a>
+                                    <h3>Coupon</h3>
+                                    <a href="#"></i>All +</a>
                                 </div>
 
                                 <ul class="news-list">
 
                                     <li>
                                         <a href="#" class="image-wrap">
-                                            <img src="<?php echo $this->theme_path; ?>images/test-image-48.png" alt="demo image">
+                                            <img src="public/images/shop.jpg" alt="demo image">
                                             <span class="image-details"></span>
                                         </a>
-                                        <h4><a href="#">Discovery of the Week: The Vim Dicta</a></h4>
-                                        <span>18 Jun 2013 / 35 COMMENTS</span>
+                                        <h4><a href="#">SHOP Name</a></h4>
+                                        <span>SHOP Detail...</span>
                                     </li>
 
                                     <li>
                                         <a href="#" class="image-wrap">
-                                            <img src="<?php echo $this->theme_path; ?>images/test-image-7.png" alt="demo image">
+                                            <img src="public/images/shop.jpg" alt="demo image">
                                             <span class="image-details"></span>
                                         </a>
-                                            <h4><a href="#">Make it easy to live well</a></h4>
-                                            <span>7 MAY 2013 / 13 COMMENTS</span>
+                                        <h4><a href="#">SHOP Name</a></h4>
+                                        <span>SHOP Detail...</span>
                                     </li>
                                     <li>
                                         <a href="#" class="image-wrap">
-                                            <img src="<?php echo $this->theme_path; ?>images/test-image-49.png" alt="demo image">
+                                            <img src="public/images/shop.jpg" alt="demo image">
                                             <span class="image-details"></span>
                                         </a>
-                                        <h4><a href="#">Exploring Unchartered Territories</a></h4>
-                                        <span>25 Mar / 9 COMMENTS</span>
+                                        <h4><a href="#">SHOP Name</a></h4>
+                                        <span>SHOP Detail...</span>
                                     </li>
                                 </ul>
                                 <span class="clear"></span>

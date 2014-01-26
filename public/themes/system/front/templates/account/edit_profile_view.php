@@ -1,4 +1,4 @@
-<article class="general-page-container">
+<article class="general-page-container col-md-12">
 	
 	<h1><?php echo lang('account_edit_profile'); ?></h1>
 
@@ -7,81 +7,177 @@
 		<div class="alert alert-<?php echo $form_status; ?>"><button type="button" class="close" data-dismiss="alert">&times;</button><?php echo $form_status_message; ?></div>
 		<?php } ?> 
 
-		<div class="page-edit-profile">
+		<div class="page-account-register">
+
+			<div style="padding-left: 10em;" >
+				
+				<span>
+					<?php if ( !empty( $show_data->account_avatar ) ): ?><br />
+						<div class="account-avatar-wrap border-shop-img2"><img style="max-width: 10em;" src="<?php echo $this->base_url.'public/upload/img_cover/'.$show_data->account_avatar; ?>" alt="<?php echo lang( 'account_avatar' ); ?>" class="account-avatar account-avatar-edit cover-img-tmp" /></div>
+					<?php else: ?>
+						<div class="account-avatar-wrap border-shop-img2"><img style="max-width: 10em;" src="<?php echo $this->base_url.'public/images/no_image.png'; ?>" alt="<?php echo lang( 'account_avatar' ); ?>" class="account-avatar account-avatar-edit cover-img-tmp" /></div>
+					<?php endif ?>
+				</span>	
+
+				<span id="upload_img" href="#" class="btn btn-mini">เลือกรูปภาพ</span> <span class="text-input-icon"></span>
+
+				<span id="status_expert" style="color:red;"></span>
+				<span class="wait_loader" style="display:none;"> <img src="<?php echo base_url();?>public/images/icon_loading.gif" /></span>
+				<div style="color:#999; margin:5px 0 5px 0;">ควรใช้รูปภาพขนาด 150 x 150 px</div>
+				<input class="cover_img_name" type="hidden" name="account_avatar" value="<?php echo $account_avatar = ( ! empty( $show_data->account_avatar ) ) ? $show_data->account_avatar : '' ; ?>">
+				<br>
+
+			</div>
+
+
+			<div class="control-group">
+				<label class="control-label" for="name"><?php echo lang('ชื่อ'); ?>: <span class="txt_require">*</span></label>
+				<div class="controls">
+					<input type="text" name="name" value="<?php if (isset($show_data->name)) {echo $show_data->name;} ?>"  id="" />
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="last_name"><?php echo lang('นามสกุล'); ?>: <span class="txt_require">*</span></label>
+				<div class="controls">
+					<input type="text" name="last_name" value="<?php if (isset($show_data->last_name)) {echo $show_data->last_name;} ?>"  id="" />
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="address"><?php echo lang('ที่อยู่ร้าน'); ?>:</label>
+				<div class="controls">
+					<input type="text" name="address" value="<?php if (isset($show_data->address)) {echo $show_data->address;} ?>"  id="" />
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="province"><?php echo lang('จังหวัด'); ?>: </label>
+				<div class="controls">
+					<select name="province">
+						<?php foreach ( $province as $key => $value ): ?>
+							
+							<?php  
+							$select = '';	
+							if ( ! empty( $show_data->province ) ) 
+							{
+								if ( $show_data->province == $value->id ) 
+								{
+									$select = 'selected';
+								} 
+								else 
+								{
+									$select = '';
+								}
+								
+							}
+
+
+							?>
+
+							<option <?php echo $select ?> value="<?php echo $value->id ?>"><?php echo $value->name_province ?></option>
+						<?php endforeach ?>
+
+					</select>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="postcode"><?php echo lang('รหัสไปรษณีย์'); ?>:</label>
+				<div class="controls">
+					<input type="text" name="postcode" value="<?php if (isset($show_data->postcode)) {echo $show_data->postcode;} ?>"  id="account_username" />
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="phone"><?php echo lang('เบอร์โทร'); ?>:</label>
+				<div class="controls">
+					<input type="text" name="phone" value="<?php if (isset($show_data->phone)) {echo $show_data->phone;} ?>"  id="account_username" />
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="name_shop"><?php echo lang('ชื่อร้านค้า'); ?>: <span class="txt_require">*</span></label>
+				<div class="controls">
+					<input type="text" name="name_shop" value="<?php if (isset($show_data->name_shop)) {echo $show_data->name_shop;} ?>"  id="account_username" />
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="detail_shop"><?php echo lang('ข้อมูลร้านค้า'); ?>: </label>
+				<div class="controls">
+					<input type="text" name="detail_shop" value="<?php if (isset($show_data->detail_shop)) {echo $show_data->detail_shop;} ?>"  id="account_username" />
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label" for="province"><?php echo lang('ชนิดร้านค้า'); ?>: </label>
+				<div class="controls">
+					<select name="type">
+						<?php foreach ( $type_shop as $key => $value ): ?>
+							
+							<?php  
+							$select = '';	
+							if ( ! empty( $show_data->type ) ) 
+							{
+								if ( $show_data->type == $value->id ) 
+								{
+									$select = 'selected';
+								} 
+								else 
+								{
+									$select = '';
+								}
+								
+							}
+							?>
+
+							<option <?php echo $select ?> value="<?php echo $value->id ?>"><?php echo $value->name_shop ?></option>
+						<?php endforeach ?>
+
+					</select>
+				</div>
+			</div>
+			
+
+			<div class="control-group">
+				<label class="control-label" for="detail_shop"><?php echo lang('Google Map'); ?>: </label>
+				<div class="controls">
+					<textarea style="height:auto" rows="4" name="code_map"><?php if (isset($show_data->code_map)) {echo $show_data->code_map;} ?></textarea>
+				</div>
+			</div>
+
+
+
+			<hr>
+			
 			<div class="control-group">
 				<label class="control-label" for="account_username"><?php echo lang('account_username'); ?>: <span class="txt_require">*</span></label>
 				<div class="controls">
-					<input type="text" name="account_username" value="<?php if (isset($account_username)) {echo $account_username;} ?>" maxlength="255" disabled="disabled" id="account_username" />
+					<input type="text" name="account_username" value="<?php if (isset($show_data->account_username)) {echo $show_data->account_username;} ?>"  id="account_username" />
 				</div>
 			</div>
 			
 			<div class="control-group">
 				<label class="control-label" for="account_email"><?php echo lang('account_email'); ?>: <span class="txt_require">*</span></label>
 				<div class="controls">
-					<input type="email" name="account_email" value="<?php if (isset($account_email)) {echo $account_email;} ?>" maxlength="255" id="account_email" />
-				</div>
+				<input type="email" name="account_email" value="<?php if (isset($show_data->account_email)) {echo $show_data->account_email;} ?>"  id="account_email" />
+				</div>	
 			</div>
 			
 			<div class="control-group">
-				<label class="control-label" for="account_password"><?php echo lang('account_password'); ?>: </label>
+				<label class="control-label" for="account_password"><?php echo lang('account_password'); ?>: <span class="txt_require">*</span></label>
 				<div class="controls">
-					<input type="password" name="account_password" value="" maxlength="255" id="account_password" />
-					<?php if ($this->uri->segment(3) == 'add'): ?><span class="txt_require">*</span><?php else: ?><span class="help-inline"><?php echo lang('account_enter_current_if_change'); ?></span><?php endif; ?> 
+					<input type="password" name="account_password" value=""  id="account_password" />
 				</div>
 			</div>
-			
-			<div class="control-group">
-				<label class="control-label" for="account_new_password"><?php echo lang('account_new_password'); ?>: </label>
-				<div class="controls">
-					<input type="password" name="account_new_password" value="" maxlength="255" id="account_new_password" />
-					<span class="help-inline"><?php echo lang('account_enter_if_change'); ?></span>
-				</div>
-			</div>
-			
-			<?php if ($allow_avatar == '1'): ?> 
-			<div class="control-group">
-				<label class="control-label"><?php echo lang('account_avatar'); ?>: </label>
-				<div class="controls">
-					<?php if (isset($account_avatar) && $account_avatar != null): ?> 
-						<div class="account-avatar-wrap">
-							<?php echo anchor('#', lang('account_delete_avatar'), array('onclick' => 'return ajax_delete_avatar();')); ?><span class="remove-status-container"></span><br />
-							<img src="<?php echo $this->base_url.$account_avatar; ?>" alt="<?php echo lang('account_avatar'); ?>" class="account-avatar account-avatar-edit" />
-						</div>
-					<?php endif; ?> 
-					<input type="file" name="account_avatar" />
-					<span class="help-inline">&lt;= <?php echo $avatar_size; ?>KB. <?php echo str_replace('|', ', ', $avatar_allowed_types); ?></span>
-				</div>
-			</div>
-			<?php endif; ?> 
-			
-			<div class="control-group">
-				<label class="control-label" for="account_fullname"><?php echo lang('account_fullname'); ?>: </label>
-				<div class="controls">
-					<input type="text" name="account_fullname" value="<?php if (isset($account_fullname)) {echo $account_fullname;} ?>" maxlength="255" id="account_fullname" />
-				</div>
-			</div>
-			
-			<div class="control-group">
-				<label class="control-label" for="account_birthdate"><?php echo lang('account_birthdate'); ?>: </label>
-				<div class="controls">
-					<input type="text" name="account_birthdate" value="<?php if (isset($account_birthdate)) {echo $account_birthdate;} ?>" maxlength="10" id="account_birthdate" />
-					<span class="help-inline"><?php echo lang('account_birthdate_format'); ?></span>
-				</div>
-			</div>
-			
-			<?php /*<label class="form-label"><?php echo lang('account_signature'); ?>:<textarea name="account_signature" cols="30" rows="5"><?php if (isset($account_signature)) {echo $account_signature;} ?></textarea></label>*/ // not use? ?>
-			<div class="control-group">
-				<label class="control-label"><?php echo lang('account_timezone'); ?>: </label>
-				<div class="controls">
-					<?php echo timezone_menu((isset($account_timezone) ? $account_timezone : $this->config_model->loadSingle('site_timezone')), '', 'account_timezone'); ?> 
-				</div>
-			</div>
+		
 
 			<?php echo $this->modules_plug->do_filter('account_edit_profile_form_bottom'); ?> 
 			
 			<div class="control-group">
 				<div class="controls">
-					<button type="submit" class="btn btn-primary"><?php echo lang('account_save'); ?></button> <?php echo anchor('account/view-logins', lang('account_view_logins')); ?>
+					<button type="submit" class="btn btn-primary"><?php echo lang('account_save'); ?></button> <?php //echo anchor('account/view-logins', lang('account_view_logins')); ?>
 				</div>
 			</div>
 		</div>
@@ -126,4 +222,42 @@ function ajax_delete_avatar() {
 		return false;
 	}
 }
+</script>
+
+
+
+
+<script>
+	
+  jQuery(document).ready(function($) {
+  
+	// Set fieldname
+	$.ajaxUploadSettings.name = 'uploadfile';
+	// Set promptzone
+	$('#upload_img').ajaxUploadPrompt({
+		url : '<?php echo base_url() ?>upload.php?info=img_cover',
+		error : function () 
+		{
+			alert( 'upload error please try again' )
+		},
+		success : function (data) 
+		{
+			name_old = $('.cover_img_name').val();
+			
+			if ( name_old != '' ) 
+			{
+
+			};
+			console.log(data);
+			data = JSON.parse( data );
+			$('.cover-img-tmp').attr( 'src' , '<?php echo base_url( "public/upload/img_cover" ) ?>/'+data.name_filemid ); 
+			$('.cover_img_name').val( data.name_filemid );
+
+		}
+	});
+    
+  });
+
+
+
 </script>

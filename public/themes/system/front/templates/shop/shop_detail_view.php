@@ -1,10 +1,15 @@
+<div class="col-md-12">
+
+<h4>ร้านค้า : อุปกรณ์แต่งบ้าน / <span style="color:#E74C3C">SANGCHAI</span></h4>
+<hr>
+
 <content>
 
     <div class="row content-row">
 
-        <?php for ( $i=1; $i <= 6; $i++ ) { ?>    
+        <?php for ( $i=1; $i <= 8; $i++ ) { ?>    
 
-            <div class="col-md-4 box-page-shop" >
+            <div class="col-md-3 box-page-shop" >
                 <div class="album-wrap">
                     <a href=""><img alt="demo image" src="http://fpoimg.com/250x250?text=Produce"></a>
                 </div>
@@ -41,29 +46,39 @@
 
     <h4>สถานที่ตั่ง</h4>   
 
+    <div class="add-text">
+        <div style="float: left; padding-right: 15px;" >
+            <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d15502.726811604723!2d100.52897651672507!3d13.737710587382729!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sth!2sth!4v1389437512032" width="500" height="400" frameborder="0" style="border:0"></iframe> -->
+            <?php if ( ! empty( $show_data->code_map ) ): ?>
+                <?php echo $show_data->code_map; ?>                 
+             <?php else: ?>
+                 <img src="http://fpoimg.com/500x400?text=Google Map" alt="">
+             <?php endif ?> 
+        </div> 
 
-    <div style="float: left; padding-right: 15px;" ><iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d15502.726811604723!2d100.52897651672507!3d13.737710587382729!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sth!2sth!4v1389437512032" width="500" height="400" frameborder="0" style="border:0"></iframe></div> 
+        <h5>ที่ตั้ง</h5>
 
-    <h5>ที่ตั้ง</h5>
+        <p><?php echo $show_data->address ?></p>
 
-    <div>38 Petkasem Road; Phasicharoen; Bangkae Bangkok 10160; Thailand</div>
+        <hr>
 
-    <hr>
+        <h5>ชื่อผู้ติดต่อ</h5>
 
-    <h5>ชื่อผู้ติดต่อ</h5>
+        <p>คุณ <?php echo $show_data->name . ' ' . $show_data->last_name ?></p>
 
-    <div>คุณ จริณทิพ มานุโรส</div>
+        <hr>
 
-    <hr>
+        <h5>เบอร์โทร</h5>
 
-    <h5>เบอร์โทร</h5>
+        <p><?php echo $show_data->phone ?></p>
 
-    <div>0888888888</div>
+        <hr>
 
-    <hr>
+        <h5>E-mail</h5>
 
-    <h5>E-mail</h5>
+        <p>i@me.com</p>
 
-    <div>i@me.com</div>
+    </div>
 
 </content>
+</div>

@@ -515,7 +515,7 @@ h3,
 
 h4,
 .h4 {
-  font-size: 18px;
+  font-size: 22px;
 }
 
 h5,
@@ -1643,7 +1643,7 @@ legend {
 label {
   display: inline-block;
   margin-bottom: 5px;
-  font-weight: bold;
+  /*font-weight: bold;*/
 }
 
 input[type="search"] {
@@ -6802,4 +6802,76 @@ td.visible-print {
   td.hidden-print {
     display: none !important;
   }
+}
+
+/*Coupon Page*/
+
+
+.left-color {
+	float: left;
+	height: 200px;
+	width: 40px;
+}
+
+.coupon-head {
+	float: left;
+	width: 630px;
+	height: 80px;
+}
+
+.coupon-head hr {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.coupon-head span {
+  color: #606060;
+}
+
+.coupon-percent {
+	float: left;
+	width: 150px;
+	height: 110px;
+	padding-left: 15px;
+}
+
+.coupon-percent h1 {
+	margin-top: 5px;
+	margin-bottom: 5px;	
+	color: #E74C3C;
+}
+
+.coupon-percent h4 {
+	margin-top: 5px;
+	margin-bottom: 5px;	
+}
+
+
+.coupon-text {
+	overflow: hidden;
+	border-bottom: 1px solid #eeeeee;
+	float: left;
+	width: 480px;
+	height: 80px;
+}
+
+
+.coupon-text span {
+  color: #606060;
+	margin-top: 5px;
+}
+
+.coupon-date {
+  color: #606060;
+	width: 480px;
+	float: left;
+	margin-top: 10px;
+}
+
+.add-text h5 {
+  font-size: 20px
+}
+
+.add-text p {
+  font-size: 18px
 }

@@ -57,6 +57,7 @@ class edit_profile extends MY_Controller
 	
 	public function index() 
 	{
+		$output['hover_menu'] = '';
 		// is member login?
 		if (!$this->account_model->isMemberLogin()) {redirect(site_url());}
 		
@@ -109,12 +110,16 @@ class edit_profile extends MY_Controller
 		
 		// save action
 		if ($this->input->post()) {
+
+			$data_post = $this->input->post();
+
+			$data = $data_post;
+
 			$data['account_id'] = $row->account_id;
-			$data['account_old_email'] = $row->account_email;
+			$data['account_email'] = $row->account_email;
 			$data['account_username'] = $row->account_username;
 			$data['account_email'] = strip_tags(trim($this->input->post('account_email', true)));
 			$data['account_password'] = trim($this->input->post('account_password'));
-			$data['account_new_password'] = trim($this->input->post('account_new_password'));
 			$data['account_fullname'] = htmlspecialchars(trim($this->input->post('account_fullname')),ENT_QUOTES, config_item('charset'));
 				if (empty($data['account_fullname'])) {$data['account_fullname'] = null;}
 			$data['account_birthdate'] = strip_tags(trim($this->input->post('account_birthdate')));
@@ -124,15 +129,71 @@ class edit_profile extends MY_Controller
 			
 			// load form validation
 			$this->load->library('form_validation');
+
+			$this->form_validation->set_rules('name', 'lang:ชื่อ', 'trim|required|xss_clean|min_length[1]|no_space_between_text');
+			$this->form_validation->set_rules('last_name', 'lang:นามสกุล', 'trim|required|xss_clean|min_length[1]|no_space_between_text');
+			$this->form_validation->set_rules('name_shop', 'lang:ชื่อร้านค้า', 'trim|required|xss_clean|min_length[1]');
+
+			$this->form_validation->set_rules('account_username', 'lang:account_username', 'trim|required|xss_clean|min_length[1]|no_space_between_text');
 			$this->form_validation->set_rules('account_email', 'lang:account_email', 'trim|required|valid_email|xss_clean');
-			$this->form_validation->set_rules('account_birthdate', 'lang:account_birthdate', 'trim|preg_match_date');
-			
+
 			if ($this->form_validation->run() == false) {
 				$output['form_status'] = 'error';
 				$output['form_status_message'] = '<ul>'.validation_errors('<li>', '</li>').'</ul>';
 			} else {
 				// save
-				$result = $this->account_model->memberEditProfile($data);
+				// $result = $this->account_model->memberEditProfile($data);
+
+				$output['form_status_message'] = '';
+
+				$this->db->where('account_id != ', $data['account_id']);
+				$this->db->where('account_email', $data['account_email']);
+				$query = $this->db->select('account_id, account_email')->get('accounts');
+				if ($query->num_rows() > 0) {
+					$query->free_result();
+
+					$output['form_status'] = 'error';
+					$output['form_status_message'] .= $this->lang->line('account_email_already_exists').'<br>';
+
+				}
+
+				$this->db->where('account_id != ', $data['account_id']);
+				$this->db->where('account_username', $data['account_username']);
+				$query = $this->db->select('account_id, account_email, account_username')->get('accounts');
+				if ($query->num_rows() > 0) {
+					$query->free_result();
+
+					$output['form_status'] = 'error';
+					$output['form_status_message'] .= $this->lang->line('account_email_already_exists');
+
+				}	
+
+				if ( empty( $data['account_password'] ) ) 
+				{
+					unset( $data['account_password'] );
+				}
+
+				if ( empty( $output['form_status_message'] ) ) 
+				{
+					$id_account = $data['account_id'];
+					unset( $data['account_id'] );
+					$this->db->where( 'account_id', $id_account );
+					$this->db->update( 'accounts', $data );
+
+					$output['form_status'] = 'success';
+					$output['form_status_message'] .= $this->lang->line('account_success');
+
+
+					$result = true;
+
+
+				}			
+
+
+
+
+
+
 				
 				if ($result === true) {
 					// flash success msg to session
@@ -166,6 +227,44 @@ class edit_profile extends MY_Controller
 		// script tags
 		// end head tags output ##############################
 		
+
+		/**
+		*
+		*** START GET PROVINCE
+		*
+		**/
+		
+		$query = $this->db->get( 'province' );
+		$output['province'] = $query->result();
+		
+		
+		/** END GET PROVINCE **/
+
+
+		/**
+		*
+		*** START GET TYPE SHOP
+		*
+		**/
+	
+		$query = $this->db->get( 'type_shop' );
+		$output['type_shop'] = $query->result();
+		
+		/** END GET TYPE SHOP **/
+		
+		// -------------------------------------
+		
+
+		$info = $this->account_model->get_account_cookie( 'member' );
+
+
+		$this->db->where( 'account_id', $info['id'] );
+		$query = $this->db->get( 'accounts' );
+		$data = $query->row();
+
+		$output['show_data'] = $data;
+
+
 		// output
 		$this->generate_page('front/templates/account/edit_profile_view', $output);
 	}// index

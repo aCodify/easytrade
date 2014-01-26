@@ -9,6 +9,9 @@ License: GNU General Public License version 3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Version: 1.0
 */
+
+@import "fonts.css";
+
 .row {
   margin-right: -20px !important;
   margin-left: -20px !important;
@@ -19,6 +22,7 @@ Version: 1.0
 .col-md-4 {
   padding-right: 20px !important;
   padding-left: 20px !important;
+  padding-top: 1em;
 }
 html {
   background-color: #211e1c;
@@ -62,12 +66,13 @@ img {
 }
 body {
   background-color: #211e1c;
-  /*background-image: url('images/background-image.jpg');*/
-  background-position: top center;
+  background-image: url('images/bg4.jpg');
+  margin-top: -30px;
+  background-position: bottom center;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  font-family: 'Open Sans', sans-serif !important;
-  font-size: 13px;
+  font-family: PGVIM !important;
+  font-size: 18px;
   color: #000000;
   /* .rgba(@bluebox-text-option, 0.5); */
 
@@ -99,7 +104,7 @@ body .h3,
 body .h4,
 body .h5,
 body .h6 {
-  font-family: 'Open Sans', sans-serif;
+  font-family: PGVIM;
 }
 body a {
   color: #000000;
@@ -353,6 +358,7 @@ header.top-bar .right {
 }
 /* END top bar */
 .top-banner-area {
+  padding-top: 20px;
   margin: 30px auto;
   min-height: 60px;
   max-width: 960px;
@@ -630,7 +636,7 @@ header.top-bar .right {
   position: relative;
   display: inline-block;
   margin-right: 20px;
-  font-size: 14px;
+  font-size: 22px;
   font-weight: bold;
   color: #000000;
   text-transform: uppercase;
@@ -787,7 +793,7 @@ header.top-bar .right {
   display: block;
   font-weight: normal;
   text-transform: none;
-  font-size: 13px;
+  font-size: 18px;
   -webkit-transition: padding 300ms cubic-bezier(0.23, 1, 0.32, 1), color 300ms cubic-bezier(0.23, 1, 0.32, 1);
   -moz-transition: padding 300ms cubic-bezier(0.23, 1, 0.32, 1), color 300ms cubic-bezier(0.23, 1, 0.32, 1);
   -o-transition: padding 300ms cubic-bezier(0.23, 1, 0.32, 1), color 300ms cubic-bezier(0.23, 1, 0.32, 1);
@@ -1295,7 +1301,7 @@ header.top-bar .right {
   -moz-box-shadow: 0 1px 0 0 #000000;
   -o-box-shadow: 0 1px 0 0 #000000;
   box-shadow: 0 1px 0 0 #000000;
-  font-size: 14px;
+  font-size: 20px;
   font-weight: bold;
   text-transform: uppercase;
   color: #000000;
@@ -1304,7 +1310,7 @@ header.top-bar .right {
 .bluebox-heading a {
   float: right;
   margin-top: 1px;
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 300;
   color: #000000;
   color: rgba(0, 0, 0, 0.5);
@@ -1849,6 +1855,7 @@ section.featured-post:hover .bluebox-info-line span.featured-post-author {
 /* END video */
 /* BEGIN gallery */
 .gallery-wrap {
+  border: 1px solid #dbdbdb;
   background-color: #ffffff;
   padding: 10px;
   position: relative;
@@ -1879,7 +1886,7 @@ section.featured-post:hover .bluebox-info-line span.featured-post-author {
   right: 0;
   left: 0;
   bottom: 0;
-  background-color: #e74c3c;
+  /*background-color: #e74c3c;*/
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0);
   opacity: 0;
@@ -1893,21 +1900,22 @@ section.featured-post:hover .bluebox-info-line span.featured-post-author {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=86)";
   filter: alpha(opacity=86);
   opacity: 0.86;
-  cursor: url(images/zoom.svg) 15 15, pointer;
-  cursor: url(images/plus.svg) 15 15, pointer;
+  cursor:pointer;
+  /*cursor: url(images/zoom.svg) 15 15, pointer;
+  cursor: url(images/plus.svg) 15 15, pointer;*/
 }
 .gallery-wrap .image-wrap .gallery-caption {
   position: absolute;
   left: 0px;
   bottom: -10px;
   right: 0px;
-  padding: 16px 20px 16px 30px;
+  padding: 8px 20px 10px 23px;
   background-color: #ffffff;
   zoom: 1;
   background-color: transparent\9;
   -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#dbffffff, endColorstr=#dbffffff)";
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#dbffffff, endColorstr=#dbffffff);
-  background-color: rgba(255, 255, 255, 0.86);
+  background-color: rgba(255, 255, 255, 0.9);
   -webkit-transition: bottom 300ms cubic-bezier(0.23, 1, 0.32, 1), background-color 300ms cubic-bezier(0.23, 1, 0.32, 1);
   -moz-transition: bottom 300ms cubic-bezier(0.23, 1, 0.32, 1), background-color 300ms cubic-bezier(0.23, 1, 0.32, 1);
   -o-transition: bottom 300ms cubic-bezier(0.23, 1, 0.32, 1), background-color 300ms cubic-bezier(0.23, 1, 0.32, 1);
@@ -1915,7 +1923,7 @@ section.featured-post:hover .bluebox-info-line span.featured-post-author {
   box-transition: bottom 300ms cubic-bezier(0.23, 1, 0.32, 1), background-color 300ms cubic-bezier(0.23, 1, 0.32, 1);
 }
 .gallery-wrap .image-wrap .gallery-caption h4 {
-  font-size: 14px;
+  font-size: 18px;
   font-weight: bold;
   color: #000000;
   text-transform: uppercase;
@@ -1924,7 +1932,7 @@ section.featured-post:hover .bluebox-info-line span.featured-post-author {
   margin-bottom: 1px;
 }
 .gallery-wrap .image-wrap .gallery-caption span {
-  font-size: 11px;
+  font-size: 18px;
   text-transform: uppercase;
   padding: 0;
   color: #000000;
@@ -2043,7 +2051,7 @@ section.featured-post:hover .bluebox-info-line span.featured-post-author {
 .album-wrap .album-caption h4 {
   color: white;
   margin: 0;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: bold;
   color: #000000;
   text-transform: uppercase;
@@ -2307,7 +2315,7 @@ ul.news-list li {
   float: left;
 }
 ul.news-list li h4 {
-  font-size: 14px;
+  font-size: 18px;
   font-weight: bold;
   color: #000000;
   text-transform: uppercase;
@@ -2316,7 +2324,7 @@ ul.news-list li h4 {
   margin-bottom: 1px;
 }
 ul.news-list li span {
-  font-size: 11px;
+  font-size: 16px;
   text-transform: uppercase;
   padding: 0;
   color: #000000;
@@ -2716,25 +2724,30 @@ ol.comment-list ul.children {
 /* END single video */
 /* BEGIN contact */
 input[type="text"],
+input[type="password"],
+input[type="email"],
+select,
+textarea,
 .bluebox-contact textarea,
 input[type="text"]:focus,
 .bluebox-contact textarea:focus {
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  border-radius: 0;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
   border: none;
   -webkit-box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.12);
   -moz-box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.12);
   -o-box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.12);
   box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.12);
   background-image: none;
-  padding: 12px 10px 11px 10px;
+  padding-left: 5px;
   width: 100%;
   margin-bottom: 20px;
   font-family: 'Open Sans', sans-serif;
   font-size: 13px;
   background-color: #ffffff;
   outline: none;
+  height: 30px;
 }
 input[type="text"]:focus,
 .bluebox-contact textarea:focus {
@@ -2868,7 +2881,7 @@ footer .social-widget ul li a:hover span:last-child {
 /* BEGIN footer logo */
 .footer-logo {
   text-align: center;
-  height: 195px;
+  height: 120px;
 }
 .footer-logo img {
   margin-top: 40px;
@@ -3581,4 +3594,19 @@ footer .social-widget ul li a:hover span:last-child {
   .audio-page > div.plus-number {
     padding-right: 61px;
   }
+}
+
+/*Coupon Page*/
+
+#coupon-body {
+	cursor:pointer;
+	float: left;
+	background-image: url(images/coupon-bg1.jpg);
+	margin: auto 0 20px;
+	width: 880px;
+}
+
+#coupon-body:hover {
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 3px #e74c3c;
+	background-image: url(images/coupon-bg.jpg);
 }

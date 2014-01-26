@@ -53,7 +53,7 @@
 				<td class="check-column"><?php echo form_checkbox('id[]', $row->account_id); ?></td>
 				<td><?php echo $row->account_id; ?></td>
 				<td title="<?php echo htmlspecialchars($row->account_fullname); ?>">
-					<?php if ($row->account_avatar != null) {echo '<a href="'.$this->base_url.$row->account_avatar.'" target="_new"><img src="'.$this->base_url.$row->account_avatar.'" alt="avatar" class="list-item-avatar" /></a>';} ?>
+					<?php //if ($row->account_avatar != null) { echo '<a href="'.$this->base_url.$row->account_avatar.'" target="_new"><img src="'.$this->base_url.$row->account_avatar.'" alt="avatar" class="list-item-avatar" /></a>';} ?>
 					<?php echo htmlspecialchars($row->account_username); ?>
 				</td>
 				<td><?php echo $row->account_email; ?></td>

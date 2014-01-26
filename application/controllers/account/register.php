@@ -41,12 +41,28 @@ class register extends MY_Controller
 		
 		// save action (register action)
 		if ($this->input->post()) {
+
+
+			$data_post = $this->input->post();
+
+			$output['show_data'] = json_decode( json_encode( $data_post ) , false );
+
+			unset( $data_post['captcha'] );
+			unset( $data_post['account_confirm_password'] );
+
+			$data = $data_post;
+
+
 			$data['account_username'] = htmlspecialchars(trim($this->input->post('account_username')), ENT_QUOTES, config_item('charset'));
 			$data['account_email'] = strip_tags(trim($this->input->post('account_email', true)));
 			$data['account_password'] = trim($this->input->post('account_password'));
 			
 			// load form validation
 			$this->load->library('form_validation');
+			$this->form_validation->set_rules('name', 'lang:ชื่อ', 'trim|required|xss_clean|min_length[1]|no_space_between_text');
+			$this->form_validation->set_rules('last_name', 'lang:นามสกุล', 'trim|required|xss_clean|min_length[1]|no_space_between_text');
+			$this->form_validation->set_rules('name_shop', 'lang:ชื่อร้านค้า', 'trim|required|xss_clean|min_length[1]');
+
 			$this->form_validation->set_rules('account_username', 'lang:account_username', 'trim|required|xss_clean|min_length[1]|no_space_between_text');
 			$this->form_validation->set_rules('account_email', 'lang:account_email', 'trim|required|valid_email|xss_clean');
 			$this->form_validation->set_rules('account_password', 'lang:account_password', 'trim|required');
@@ -114,6 +130,37 @@ class register extends MY_Controller
 		// script tags
 		// end head tags output ##############################
 		
+
+		/**
+		*
+		*** START GET PROVINCE
+		*
+		**/
+		
+		$query = $this->db->get( 'province' );
+		$output['province'] = $query->result();
+		
+		
+		/** END GET PROVINCE **/
+
+
+		/**
+		*
+		*** START GET TYPE SHOP
+		*
+		**/
+	
+		$query = $this->db->get( 'type_shop' );
+		$output['type_shop'] = $query->result();
+		
+		/** END GET TYPE SHOP **/
+		
+		// -------------------------------------
+		
+
+
+		$output['hover_menu'] = '';
+
 		// output
 		$this->generate_page('front/templates/account/register_view', $output);
 	}// index

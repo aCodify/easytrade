@@ -145,6 +145,8 @@ class login extends MY_Controller
 			$output['account_username'] = $data['account_username'];
 		}
 		
+		$output['hover_menu'] = '';
+		
 		// head tags output ##############################
 		$output['page_title'] = $this->html_model->gen_title($this->lang->line('account_login'));
 		// meta tags

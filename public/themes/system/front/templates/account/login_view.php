@@ -1,6 +1,6 @@
 <article class="general-page-container">
 	
-	<h1><?php echo lang('account_login'); ?></h1>
+	<h1><?php echo lang('เข้าสู่ระบบ'); ?></h1>
 
 	<?php echo form_open(current_url().(isset($go_to) ? '?rdr='.$go_to : ''), array('class' => 'form-horizontal')); ?> 
 	
@@ -22,7 +22,7 @@
 			</div>
 		</div>
 	
-		<div class="control-group">
+		<div class="control-group display_none">
 			<div class="controls">
 				<label class="checkbox inline"><input type="checkbox" name="remember" value="yes" /> <?php echo lang('account_remember_my_login'); ?></label>
 			</div>
@@ -47,7 +47,7 @@
 
 		<div class="control-group">
 			<div class="controls">
-				<button type="submit" class="btn btn-primary"><?php echo lang('account_login'); ?></button> <?php echo anchor('account/forgotpw', lang('account_forget_userpass')); ?> 
+				<button type="submit" class="btn btn-primary"><?php echo lang('account_login'); ?></button> <?php //echo anchor('account/forgotpw', lang('account_forget_userpass')); ?> 
 			</div>
 		</div>
 

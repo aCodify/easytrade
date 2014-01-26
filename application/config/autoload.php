@@ -64,7 +64,7 @@ $autoload['libraries'] = array('database', 'modules_plug');
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('language', 'siteinfo', 'url');
+$autoload['helper'] = array('language', 'siteinfo', 'url' , 'form' , 'function');
 
 
 /*
