@@ -1,6 +1,6 @@
 <div class="col-md-12">
 
-<h4>ร้านค้า : อุปกรณ์แต่งบ้าน / <span style="color:#E74C3C">SANGCHAI</span></h4>
+<h4>ร้านค้า : อุปกรณ์แต่งบ้าน / <span style="color:#E74C3C"><?php echo $show_data->name_shop ?></span></h4>
 <hr>
 
 <content>
