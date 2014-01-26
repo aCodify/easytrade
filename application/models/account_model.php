@@ -1670,11 +1670,11 @@ class account_model extends CI_Model
 		$data['account_confirm_code'] = random_string('alnum', '6');
 		
 		// send register email
-		$send_result = $this->sendRegisterEmail($data);
-		if ($send_result !== true) {
-			return $send_result;
-		}
-		unset($send_result);
+		// $send_result = $this->sendRegisterEmail($data);
+		// if ($send_result !== true) {
+		// 	return $send_result;
+		// }
+		// unset($send_result);
 		
 		// load date helper for gmt
 		$this->load->helper('date');
