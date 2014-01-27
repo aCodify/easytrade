@@ -548,6 +548,7 @@ header.top-bar .right {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#dbffffff, endColorstr=#dbffffff);
   background-color: rgba(255, 255, 255, 0.86);
   max-width: 960px;
+  min-height: 500px;
 }
 .content-wrap .main-container img {
   -webkit-backface-visibility: hidden;
@@ -636,7 +637,7 @@ header.top-bar .right {
   position: relative;
   display: inline-block;
   margin-right: 20px;
-  font-size: 22px;
+  font-size: 20px;
   font-weight: bold;
   color: #000000;
   text-transform: uppercase;
@@ -2346,7 +2347,6 @@ ul.news-list li a.image-wrap {
   width: 60px;
   float: left;
   overflow: hidden;
-  background-color: #e74c3c;
 }
 ul.news-list li a.image-wrap img {
   display: block;

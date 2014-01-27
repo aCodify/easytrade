@@ -1990,7 +1990,7 @@ textarea.input-lg {
   display: inline-block;
   padding: 6px 12px;
   margin-bottom: 0;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: normal;
   line-height: 1.428571429;
   text-align: center;
@@ -6874,4 +6874,21 @@ td.visible-print {
 
 .add-text p {
   font-size: 18px
+}
+
+.set-icon {
+  cursor: pointer;
+  float: left;
+  padding-left: 100px;
+  padding-right: 5px;
+  padding-top: 5px;
+  width: 120px;
+}
+
+.set-icon img {
+  max-width: 20px;
+}
+
+.text-shop {
+  margin-top: 10px;
 }
