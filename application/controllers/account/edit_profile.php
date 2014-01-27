@@ -175,6 +175,7 @@ class edit_profile extends MY_Controller
 
 				if ( empty( $output['form_status_message'] ) ) 
 				{
+					$data['account_password'] = $this->encryptPassword($data['account_password']);
 					$id_account = $data['account_id'];
 					unset( $data['account_id'] );
 					$this->db->where( 'account_id', $id_account );
