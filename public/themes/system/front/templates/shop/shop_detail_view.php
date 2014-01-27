@@ -16,7 +16,7 @@ $data_type = $query->row();
 
             <div class="col-md-3 box-page-shop" >
                 <div class="album-wrap">
-                    <a href=""><img alt="demo image" src="http://fpoimg.com/250x250?text=Produce"></a>
+                    <a href=""><img alt="demo image" src="http://placehold.it/200x200"></a>
                 </div>
             </div>
 
@@ -49,10 +49,10 @@ $data_type = $query->row();
 
     <hr>
 
-    <h4>สถานที่ตั่ง</h4>   
+    <h4 style="margin-bottom: 20px;">สถานที่ตั้ง</h4>   
 
     <div class="add-text">
-        <div style="float: left; padding-right: 15px;" >
+        <div style="float: left; padding-right: 30px;" >
             <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d15502.726811604723!2d100.52897651672507!3d13.737710587382729!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sth!2sth!4v1389437512032" width="500" height="400" frameborder="0" style="border:0"></iframe> -->
             <?php if ( ! empty( $show_data->code_map ) ): ?>
                 <?php echo $show_data->code_map; ?>                 
@@ -80,8 +80,7 @@ $data_type = $query->row();
         <hr>
 
         <h5>E-mail</h5>
-
-        <p>i@me.com</p>
+        <p><?php echo $show_data->account_email ?></p>
 
     </div>
 

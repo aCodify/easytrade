@@ -142,7 +142,10 @@
         <div class="copyrights-content">
             CREATE BY GROUP STUDEN SIAM UNIVERSITY
         </div>
-
+        
+        <div class="footer-logo">
+            <img src="http://localhost/easytrade-master/public/themes/system/images/logo_web_mini.png">    
+        </div>
 
     </div>
     
