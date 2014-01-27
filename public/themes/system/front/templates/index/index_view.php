@@ -5,7 +5,7 @@
 
                         <div class="bb-slider-2 bluebox-slider" data-direction-nav=".arrow-links-wrap" data-control-nav=".slider-control-nav">
                             <div class="swiper-slide set_header">
-                                <img src="public/images/banner.jpg" class=" img-preload" alt="sample image" data-aspectratio="1.3333" id="img-52552406dfa3e">
+                                <img src="public/images/banner01.jpg" class=" img-preload" alt="sample image" data-aspectratio="1.3333" id="img-52552406dfa3e">
                                 <div class="slider-caption">
                                     <!-- <h4>
                                         <a href="#"><span>Banda - HTML5 Music Magazine<span></span></span></a>
@@ -18,15 +18,17 @@
                             <?php if ( empty( $info ) ): ?>
     
                                 <?php echo form_open( site_url( 'account/login' ) , array('class' => 'form-horizontal')); ?> 
-                                <div style="float: right;">
-                                    <div>
-                                        <span style="position: relative; width: 57px; display: inline-block;" >Login</span> <input name="account_username" type="text" clear="set_input" style="width: 15em;">
+                                <div style="float: left; background: none repeat scroll 0% 0% rgb(255, 255, 255); margin-left: 10px; width: 270px; border-radius: 3px; height: 150px;">
+                                    <div style="float: right;">
+                                        <div style="padding-top: 10px; padding-right: 10px;">
+                                            <span style="position: relative; display: inline-block; width: 60px; padding-left: 0px;" >Username</span> <input name="account_username" autocomplete="off" placeholder="Enter Username" type="text" clear="set_input" style="width: 14em;">
+                                        </div>
+                                        <div>
+                                            <span style="position: relative; width: 60px; display: inline-block;" >Password</span>  <input name="account_password" autocomplete="off" placeholder="Password" type="password" clear="set_input" style="width: 14em;">
+                                        </div>
+                                        <button class="btn-default cursor_pointer "  style="float: right; margin-right: 10px; padding: 5px 15px;" >Login</button>
+                                        <a style="float: right; background: none repeat scroll 0% 0% transparent; margin-right: 25px;" class="btn-default" href="<?php echo site_url( 'account/register' ) ?>" style="margin-left: 120px;"> Register </a>
                                     </div>
-                                    <div>
-                                        <span style="position: relative; width: 57px; display: inline-block;" >Password</span>  <input name="account_password" type="password" clear="set_input" style="width: 15em;">
-                                    </div>
-                                    <button class="btn-default cursor_pointer "  style="float: right;" >Login</button>
-                                    <a style="float: right; margin-right: 25px;" class="btn-default" href="<?php echo site_url( 'account/register' ) ?>" style="margin-left: 120px;"> Register </a>
                                 </div>
                                 <?php echo form_close(); ?>       
                                 
@@ -42,23 +44,27 @@
 
                                 ?>
 
-                                <div style="float: right;">
-                                    <div style="position: relative; float: left; left: -3em;" >
+                                <div style="float: left; background: none repeat scroll 0% 0% rgb(255, 255, 255); margin-left: 10px; width: 270px; border-radius: 3px;">
+                                    <div style="position: relative; float: left;" >
                                         <?php if ( ! empty( $data->account_avatar ) ): ?>
-                                            <img src="<?php echo base_url( 'public/upload/img_cover/'.$data->account_avatar ) ?>" alt="" style="width: 150px;" >
+                                            <img src="<?php echo base_url( 'public/upload/img_cover/'.$data->account_avatar ) ?>" alt="" style="width: 150px; border: 5px solid rgb(255, 255, 255); border-radius: 3px;" >
                                         <?php endif ?>
                                     </div>
-                                    <div style="float: left; display: inline-block;" >
-                                        <span style="display: table-caption; position: relative; width: 90px; margin-left: -44px;" >ร้าน</span> <span></span>
+                                    <div class="set-icon">
+                                        <a href="<?php echo site_url( 'account/edit_profile' ) ?>"> <img src="public/images/icon-setting.png" title="แก้ไขข้อมูลร้านค้า"> </a>
+                                    </div>
+                                    <div class="text-shop">
+                                        <div style="float: left; display: inline-block;" >
+                                            <span style="position: relative; display: table-caption; float: left; text-align: center; width: 120px;" >ยินดีต้อนรับร้าน</span> <span></span>
+                                        </div>
+                                        <div>
+                                            <span style="display: table-caption; position: relative; float: left; color: rgb(231, 76, 60); height: 51px; text-align: center; width: 120px;" >
+                                                <?php echo $data->name_shop ?>
+                                            </span>
+                                        </div>
                                     </div>
                                     <div>
-                                        <span style="display: table-caption; position: relative; width: 69px; margin-left: -60px;" >
-                                            <a href="<?php echo site_url( 'account/edit_profile' ) ?>"><?php echo $data->name_shop ?></a>
-                                        </span>
-                                    </div>
-
-                                    <div>
-                                        <span style="display: table-caption; position: relative; width: 69px; margin-left: -44px;" ><a class="btn btn-primary" style="margin-top: 1em;margin-left:14px;" href="<?php echo site_url( 'account/logout' ) ?>">ออกจากระบบ</a></span>
+                                        <span style="display: table-caption; position: relative; float: left; text-align: center; width: 120px;" ><a class="btn btn-primary" style="margin-top: 11px;" href="<?php echo site_url( 'account/logout' ) ?>">ออกจากระบบ</a></span>
                                     </div>
                                     
                                 </div>
@@ -87,7 +93,7 @@
                                             <?php if ( ! empty( $value->account_avatar ) ): ?>
                                                 <img src="<?php echo base_url( 'public/upload/img_cover/'.$value->account_avatar ) ?>" alt="demo image">
                                             <?php else: ?>
-                                                <img src="http://fpoimg.com/150x150?text=Logo" alt="">
+                                                <img src="http://placehold.it/250x250" alt="">
                                             <?php endif ?>
                                             <span class="image-details"></span> 
                                         </a>
