@@ -190,11 +190,6 @@ class edit_profile extends MY_Controller
 
 				}			
 
-
-
-
-
-
 				
 				if ($result === true) {
 					// flash success msg to session
@@ -269,6 +264,23 @@ class edit_profile extends MY_Controller
 		// output
 		$this->generate_page('front/templates/account/edit_profile_view', $output);
 	}// index
+	
+
+	/**
+	 * encrypt password
+	 * @param string $password
+	 * @return string
+	 */
+	public function encryptPassword($password = '') 
+	{
+		if (property_exists($this, 'modules_plug') && $this->modules_plug->has_filter('account_generate_hash_password')) {
+			return $this->modules_plug->do_filter('account_generate_hash_password', $password);
+		} else {
+			include_once dirname(dirname(__FILE__)).'/libraries/PasswordHash.php';
+			$PasswordHash = new PasswordHash(12, false);
+			return $PasswordHash->HashPassword($password);
+		}
+	}// encryptPassword
 	
 
 }
