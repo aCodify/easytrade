@@ -56,6 +56,3 @@
 .display_none {
   display: none;
 }
-.textarea .bluebox-contact textarea:focus {
-  width: auto;
-}
