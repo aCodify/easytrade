@@ -175,6 +175,13 @@ class index extends MY_Controller
 		$this->db->where( 'account_id !=', 1 );
 		$this->db->where( 'account_status', 1 );
 		$this->db->where( 'type', $id );
+
+		if ( $this->input->get( 'province' ) ) 
+		{
+			$this->db->where( 'province', (int)$this->input->get( 'province' ) );
+		}
+
+
 		$query = $this->db->get( 'accounts' );
 		$data = $query->result();
 		$output['show_data'] = $data;
@@ -183,6 +190,10 @@ class index extends MY_Controller
 		$query = $this->db->get( 'type_shop' );
 		$data = $query->row();
 		$output['type'] = $data;
+
+
+		$query = $this->db->get( 'province' );
+		$output['province_list'] = $query->result();
 
 
 		$this->generate_page('front/templates/index/shop_view', $output);
@@ -247,5 +258,16 @@ class index extends MY_Controller
 		$this->generate_page('front/templates/contact/index_contact_view', $output);
 	
 	} // END FUNCTION contact
+
+
+
+	public function my_shop( $id )
+	{
+		$output = '';
+		$output['hover_menu'] = '';
+		$this->generate_page('front/templates/account/my_shop_view', $output);	
+	
+	} // END FUNCTION my_shop
+
 	
 }

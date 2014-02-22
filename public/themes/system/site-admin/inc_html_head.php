@@ -28,6 +28,12 @@
 		<script src="<?php echo $this->theme_path; ?>share-js/superfish/hoverIntent.js"></script>
 		<script src="<?php echo $this->theme_path; ?>share-js/superfish/superfish.js"></script>
 		<script src="<?php echo $this->theme_path; ?>share-js/superfish/supersubs.js"></script>
+
+
+
+		<script type="text/javascript" src="<?php echo $this->theme_path; ?>js/ajaxupload.js"></script>
+
+		
 		<?php if (isset($page_script)) {echo $page_script;} ?> 
 		
 		<!--.js up to page.-->

@@ -47,7 +47,9 @@
                                 <div style="float: left; background: none repeat scroll 0% 0% rgb(255, 255, 255); margin-left: 10px; width: 270px; border-radius: 3px;">
                                     <div style="position: relative; float: left;" >
                                         <?php if ( ! empty( $data->account_avatar ) ): ?>
+                                            <a href="<?php echo site_url('index/shop_detail/'.$data->account_id) ?>">
                                             <img src="<?php echo base_url( 'public/upload/img_cover/'.$data->account_avatar ) ?>" alt="" style="width: 150px; border: 5px solid rgb(255, 255, 255); border-radius: 3px;" >
+                                            </a>
                                         <?php endif ?>
                                     </div>
                                     <div class="set-icon">
@@ -58,13 +60,14 @@
                                             <span style="position: relative; display: table-caption; float: left; text-align: center; width: 120px;" >ยินดีต้อนรับร้าน</span> <span></span>
                                         </div>
                                         <div>
-                                            <span style="display: table-caption; position: relative; float: left; color: rgb(231, 76, 60); height: 51px; text-align: center; width: 120px;" >
+                                            <span style="display: table; position: relative; float: left; color: rgb(231, 76, 60); height: 1px; text-align: center; width: 120px;" >
                                                 <?php echo $data->name_shop ?>
                                             </span>
                                         </div>
+                                        <p style="text-align: center;" ><a href="<?php echo site_url('index/my_shop/'.$data->account_id) ?>">ข้อมูลร้านค้า</a></p>
                                     </div>
                                     <div>
-                                        <span style="display: table-caption; position: relative; float: left; text-align: center; width: 120px;" ><a class="btn btn-primary" style="margin-top: 11px;" href="<?php echo site_url( 'account/logout' ) ?>">ออกจากระบบ</a></span>
+                                        <span style="display: table-caption; position: relative; float: left; text-align: center; width: 120px;" ><a class="btn btn-primary" style="margin-top: 0px;" href="<?php echo site_url( 'account/logout' ) ?>">ออกจากระบบ</a></span>
                                     </div>
                                     
                                 </div>

@@ -38,9 +38,23 @@ class index extends admin_controller
 		// end head tags output ##############################
 		
 		// output
+
+		// redirect( site_url('site-admin/account') );
+
+
 		$this->generate_page('site-admin/templates/index/index_view', $output);
 	}// index
 	
+
+
+	public function banner()
+	{
+		$output = '';
+		$output['page_title'] = $this->html_model->gen_title($this->lang->line('admin_home'));
+
+		$this->generate_page('site-admin/templates/index/banner_view', $output);
+	
+	} // END FUNCTION banner
 
 }
 

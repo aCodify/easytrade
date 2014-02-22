@@ -5,8 +5,16 @@
 			
 			
 			<div class="header">
-				<div class="cms-logo"><img src="<?php echo $this->theme_path; ?>site-admin/images/logo.png" alt="Agni CMS" /></div>
+				<div class="cms-logo">
+					<img src="<?php echo $this->theme_path; ?>site-admin/images/logo.png" alt="Agni CMS" />
+				</div>
+				
 				<div class="site-name"><?php echo $this->config_model->loadSingle('site_name'); ?></div>
+				
+				<a class="site-name" href="<?php echo site_url('site-admin/account') ?>">Member</a>
+
+				<a class="site-name" href="<?php echo site_url('site-admin/index/banner') ?>">Banner</a>
+				
 				<div class="user">
 					<?php if (!isset($cookie)) {
 						$cookie = $this->account_model->getAccountCookie('admin');
@@ -21,7 +29,7 @@
 				<div class="clearfix"></div>
 				
 				
-				<div class="navigations">
+				<div class="navigations" style="display:none" >
 					<?php // load helper
 					$this->load->helper('account'); 
 					?> 

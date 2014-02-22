@@ -15,7 +15,7 @@
         <link href="<?php echo $this->theme_path; ?>style.css" rel="stylesheet">
 
 
-        <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+        <link href="<?php echo $this->theme_path; ?>font-awesome.css" rel="stylesheet">
         <link href="<?php echo $this->theme_path; ?>js/swiperjs/idangerous.swiper.css" rel="stylesheet">
         <link href="<?php echo $this->theme_path; ?>front/templates/adminstyle_less.css" rel="stylesheet">
 
@@ -79,7 +79,7 @@
                         <li <?php echo $hover = ( $hover_menu == 'HOME' ) ? 'class="current-item"' : '' ; ?> >
                             <a href="<?php echo site_url(); ?>">HOME</a>
                         </li>
-                        <li <?php echo $hover = ( $hover_menu == 'NEWS' ) ? 'class="current-item"' : '' ; ?> >
+                        <li style="display:none"> <?php echo $hover = ( $hover_menu == 'NEWS' ) ? 'class="current-item"' : '' ; ?> >
                             <a href="<?php echo site_url( 'index/news' ) ?>">NEWS</a>
                         </li>
                         <li <?php echo $hover = ( $hover_menu == 'SHOP' ) ? 'class="current-item"' : 'class="subnav"' ; ?>>
