@@ -244,6 +244,9 @@ class index extends MY_Controller
 
 		$output['hover_menu'] = 'COUPON';
 
+		$query = $this->db->get( 'province' );
+		$output['province_list'] = $query->result();
+
 		$this->generate_page('front/templates/coupon/index_coupon_view', $output);
 	
 	} // END FUNCTION coupon
@@ -265,9 +268,50 @@ class index extends MY_Controller
 	{
 		$output = '';
 		$output['hover_menu'] = '';
+
+		if ( $this->input->post() ) 
+		{
+			echo '<pre>';
+			print_r( $this->input->post() );
+			echo '</pre>';
+		}
+
 		$this->generate_page('front/templates/account/my_shop_view', $output);	
 	
 	} // END FUNCTION my_shop
+
+
+	public function add_coupon()
+	{
+		$output = '';
+
+		$output['hover_menu'] = '';
+
+		if ( $this->input->post() ) 
+		{
+			echo '<pre>';
+			print_r( $this->input->post() );
+			echo '</pre>';
+		}
+
+		$this->generate_page('front/templates/coupon/form_coupon_view', $output);		
+	
+	} // END FUNCTION add_coupon
+
+	public function edit_coupon( $id = '' )
+	{
+	
+		# code...
+	
+	} // END FUNCTION add_coupon
+
+	public function delete_coupon( $id = '' )
+	{
+	
+		# code...
+	
+	} // END FUNCTION add_coupon
+
 
 	
 }

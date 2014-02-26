@@ -24,7 +24,8 @@
 				<span id="status_expert" style="color:red;"></span>
 				<span class="wait_loader" style="display:none;"> <img src="<?php echo base_url();?>public/images/icon_loading.gif" /></span>
 				<div style="color:#999; margin:5px 0 5px 0;">ควรใช้รูปภาพขนาด 150 x 150 px</div>
-				<input class="cover_img_name1" type="hidden" name="account_avatar" value="<?php echo $account_avatar = ( ! empty( $show_data->account_avatar ) ) ? $show_data->account_avatar : '' ; ?>">
+				<input class="cover_img_name1" type="hidden" name="image_shop[]" value="<?php echo $account_avatar = ( ! empty( $show_data->account_avatar ) ) ? $show_data->account_avatar : '' ; ?>">
+				<span class="image_delete cursor_pointer" style="display:none" >ลบรูป</span>	
 				<br>
 
 			</div>
@@ -44,7 +45,8 @@
 				<span id="status_expert" style="color:red;"></span>
 				<span class="wait_loader" style="display:none;"> <img src="<?php echo base_url();?>public/images/icon_loading.gif" /></span>
 				<div style="color:#999; margin:5px 0 5px 0;">ควรใช้รูปภาพขนาด 150 x 150 px</div>
-				<input class="cover_img_name2" type="hidden" name="account_avatar" value="<?php echo $account_avatar = ( ! empty( $show_data->account_avatar ) ) ? $show_data->account_avatar : '' ; ?>">
+				<input class="cover_img_name2" type="hidden" name="image_shop[]" value="<?php echo $account_avatar = ( ! empty( $show_data->account_avatar ) ) ? $show_data->account_avatar : '' ; ?>">
+				<span class="image_delete cursor_pointer" style="display:none" >ลบรูป</span>	
 				<br>
 
 			</div>
@@ -64,7 +66,8 @@
 				<span id="status_expert" style="color:red;"></span>
 				<span class="wait_loader" style="display:none;"> <img src="<?php echo base_url();?>public/images/icon_loading.gif" /></span>
 				<div style="color:#999; margin:5px 0 5px 0;">ควรใช้รูปภาพขนาด 150 x 150 px</div>
-				<input class="cover_img_name3" type="hidden" name="account_avatar" value="<?php echo $account_avatar = ( ! empty( $show_data->account_avatar ) ) ? $show_data->account_avatar : '' ; ?>">
+				<input class="cover_img_name3" type="hidden" name="image_shop[]" value="<?php echo $account_avatar = ( ! empty( $show_data->account_avatar ) ) ? $show_data->account_avatar : '' ; ?>">
+				<span class="image_delete cursor_pointer" style="display:none" >ลบรูป</span>	
 				<br>
 
 			</div>
@@ -84,7 +87,8 @@
 				<span id="status_expert" style="color:red;"></span>
 				<span class="wait_loader" style="display:none;"> <img src="<?php echo base_url();?>public/images/icon_loading.gif" /></span>
 				<div style="color:#999; margin:5px 0 5px 0;">ควรใช้รูปภาพขนาด 150 x 150 px</div>
-				<input class="cover_img_name4" type="hidden" name="account_avatar" value="<?php echo $account_avatar = ( ! empty( $show_data->account_avatar ) ) ? $show_data->account_avatar : '' ; ?>">
+				<input class="cover_img_name4" type="hidden" name="image_shop[]" value="<?php echo $account_avatar = ( ! empty( $show_data->account_avatar ) ) ? $show_data->account_avatar : '' ; ?>">
+				<span class="image_delete cursor_pointer" style="display:none" >ลบรูป</span>	
 				<br>
 
 			</div>
@@ -108,7 +112,7 @@
 				<span id="status_expert" style="color:red;"></span>
 				<span class="wait_loader" style="display:none;"> <img src="<?php echo base_url();?>public/images/icon_loading.gif" /></span>
 				<div style="color:#999; margin:5px 0 5px 0;">ควรใช้รูปภาพขนาด 150 x 150 px</div>
-				<input class="cover_img_name5" type="hidden" name="account_avatar" value="<?php echo $account_avatar = ( ! empty( $show_data->account_avatar ) ) ? $show_data->account_avatar : '' ; ?>">
+				<span class="image_delete cursor_pointer" style="display:none" >ลบรูป</span>	
 				<br>
 
 			</div>			
@@ -149,6 +153,13 @@
 <script>
 	
   jQuery(document).ready(function($) {
+
+
+  	$('.image_delete').click(function(event) {
+  		$(this).parent().find('div img').attr( 'src' , "<?php echo $this->base_url.'public/images/no_image.png'; ?>" );
+  		$(this).hide();
+  	});
+
   
 	// Set fieldname
 	$.ajaxUploadSettings.name = 'uploadfile';
@@ -167,7 +178,12 @@
 			{
 
 			};
-			console.log(data);
+			// console.log(data);
+
+			
+
+			$('.upload_img1').parent().find('.image_delete').show();
+
 			data = JSON.parse( data );
 			$('.cover-img-tmp1').attr( 'src' , '<?php echo base_url( "public/upload/img_cover" ) ?>/'+data.name_filemid ); 
 			$('.cover_img_name1').val( data.name_filemid );
@@ -190,7 +206,9 @@
 			{
 
 			};
-			console.log(data);
+			// console.log(data);
+			$('.upload_img2').parent().find('.image_delete').show();
+
 			data = JSON.parse( data );
 			$('.cover-img-tmp2').attr( 'src' , '<?php echo base_url( "public/upload/img_cover" ) ?>/'+data.name_filemid ); 
 			$('.cover_img_name2').val( data.name_filemid );
@@ -213,7 +231,9 @@
 			{
 
 			};
-			console.log(data);
+			// console.log(data);
+			$('.upload_img3').parent().find('.image_delete').show();
+
 			data = JSON.parse( data );
 			$('.cover-img-tmp3').attr( 'src' , '<?php echo base_url( "public/upload/img_cover" ) ?>/'+data.name_filemid ); 
 			$('.cover_img_name3').val( data.name_filemid );
@@ -236,7 +256,9 @@
 			{
 
 			};
-			console.log(data);
+			// console.log(data);
+			$('.upload_img4').parent().find('.image_delete').show();
+
 			data = JSON.parse( data );
 			$('.cover-img-tmp4').attr( 'src' , '<?php echo base_url( "public/upload/img_cover" ) ?>/'+data.name_filemid ); 
 			$('.cover_img_name4').val( data.name_filemid );
@@ -262,14 +284,16 @@
 			{
 
 			};
-			console.log(data);
+			// console.log(data);
+			
+
 			data = JSON.parse( data );
 
 
 			// $('.cover-img-tmp5').attr( 'src' , '<?php echo base_url( "public/upload/img_cover" ) ?>/'+data.name_filemid ); 
 			
 
-			$('.cover-img-tmp5').append('<img style="width: 7em; margin: 10px;" src="<?php echo base_url( "public/upload/img_cover" ) ?>/'+data.name_filemid+' " alt=""><input type="hidden" name="image_product" class="name_img[]" value="'+data.name_filemid+'" > '); 
+			$('.cover-img-tmp5').append('<img style="width: 7em; margin: 10px;" src="<?php echo base_url( "public/upload/img_cover" ) ?>/'+data.name_filemid+' " alt=""><input type="hidden" name="image_product[]" class="name_img" value="'+data.name_filemid+'" > '); 
 
 		}
 	});	

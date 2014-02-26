@@ -9,6 +9,7 @@
         <title>Easy Trade</title>
 
         <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" href="<?php echo $this->theme_path ?>share-js/jquery-ui/css/smoothness/jquery-ui.css">
         <link href="<?php echo $this->theme_path; ?>bootstrap-3.0.0/dist/css/bootstrap.css" rel="stylesheet">
 
         <!-- Custom styles for this template-->

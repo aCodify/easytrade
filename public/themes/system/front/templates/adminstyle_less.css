@@ -100,3 +100,15 @@
   float: left;
   padding-left: 1em;
 }
+.form_coupon input {
+  width: 35em;
+}
+.form_coupon input.persen {
+  width: 5em;
+}
+.form_coupon input.persen.span3 {
+  width: 15em;
+}
+.form_coupon input.persen.span4 {
+  width: 35em;
+}
