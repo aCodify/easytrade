@@ -26,3 +26,6 @@ _img_src/*
 /*.7z
 /*.zip
 /*.sql
+
+
+sftp-config.json
