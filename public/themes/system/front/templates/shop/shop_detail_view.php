@@ -11,19 +11,50 @@ $data_type = $query->row();
 <content>
 
     <div class="row content-row">
+                        
+        <h4>&nbsp;&nbsp;&nbsp;&nbsp;บรรยากาศภายในร้าน</h4>
 
-        <?php for ( $i=1; $i <= 8; $i++ ) { ?>    
-
+        <?php foreach ( $image_shop as $key => $value ): ?>
+            
             <div class="col-md-3 box-page-shop" >
                 <div class="album-wrap">
-                    <a href=""><img alt="demo image" src="http://placehold.it/200x200"></a>
+
+                    <?php if ( ! empty( $value->image ) ): ?>
+                        <a href=""><img alt="demo image" style="max-height: 10em;" src="<?php echo $this->base_url.'public/upload/img_cover/'.$value->image; ?>"></a>
+                    <?php else: ?>
+                        <!-- <a href=""><img alt="demo image" src="http://placehold.it/200x200"></a> -->
+                    <?php endif ?>
                 </div>
             </div>
 
-        <?php } ?>
+        <?php endforeach ?>
 
     </div>
-    
+
+    <div class="row content-row"> 
+
+        <h4>&nbsp;&nbsp;&nbsp;&nbsp;สินค้าแนะนำ</h4>
+
+        <?php foreach ( $image_product as $key => $value ): ?>
+            
+            <div class="col-md-3 box-page-shop" >
+                <div class="album-wrap">
+
+                    <?php if ( ! empty( $value->image_product ) ): ?>
+                        <a href=""><img alt="demo image" style="max-height: 10em;" src="<?php echo $this->base_url.'public/upload/img_cover/'.$value->image_product; ?>"></a>
+                    <?php else: ?>
+                        <!-- <a href=""><img alt="demo image" src="http://placehold.it/200x200"></a> -->
+                    <?php endif ?>
+                </div>
+            </div>
+
+        <?php endforeach ?>
+
+    </div>
+
+
+
+
     <h4>คูปองส่วนลด</h4>
     
     <div class="events-list events-page">

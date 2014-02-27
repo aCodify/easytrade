@@ -14,6 +14,27 @@ function json_response($data)
 }
 
 
+function is_array_empty_validate($InputVariable)
+{
+	$info = array();
+	if (is_array($InputVariable) && count($InputVariable) > 0)
+	{
+
+		foreach ( $InputVariable as $key => $value ) 
+		{
+			if ( empty( $value ) ) 
+			{
+				$info[] = $key;
+			}
+		}
+
+	}
+
+   return $info;
+
+
+}
+
 function check_keyword( $string = '' )
 {
 	$CI_SET =& get_instance();

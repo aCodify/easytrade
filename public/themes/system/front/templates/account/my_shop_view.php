@@ -5,15 +5,15 @@
 	<?php echo form_open_multipart('', array('class' => 'form-horizontal')); ?> 
 		<?php if (isset($form_status) && isset($form_status_message)) { ?> 
 		<div class="alert alert-<?php echo $form_status; ?>"><button type="button" class="close" data-dismiss="alert">&times;</button><?php echo $form_status_message; ?></div>
-		<?php } ?> 
+		<?php } ?>
 
 		<div class="page-account-register">
 
 			<div class="overset_image" >
 				
 				<span>
-					<?php if ( !empty( $show_data->account_avatar ) ): ?><br />
-						<div class="account-avatar-wrap border-shop-img2"><img style="max-width: 10em;" src="<?php echo $this->base_url.'public/upload/img_cover/'.$show_data->account_avatar; ?>" alt="<?php echo lang( 'account_avatar' ); ?>" class="account-avatar account-avatar-edit cover-img-tmp1" /></div>
+					<?php if ( !empty( $image_shop[0]->image ) ): ?><br />
+						<div class="account-avatar-wrap border-shop-img2"><img style="max-width: 10em;" src="<?php echo $this->base_url.'public/upload/img_cover/'.$image_shop[0]->image; ?>" alt="<?php echo lang( 'account_avatar' ); ?>" class="account-avatar account-avatar-edit cover-img-tmp1" /></div>
 					<?php else: ?>
 						<div class="account-avatar-wrap border-shop-img2"><img style="max-width: 10em;" src="<?php echo $this->base_url.'public/images/no_image.png'; ?>" alt="<?php echo lang( 'account_avatar' ); ?>" class="account-avatar account-avatar-edit cover-img-tmp1" /></div>
 					<?php endif ?>
@@ -24,7 +24,7 @@
 				<span id="status_expert" style="color:red;"></span>
 				<span class="wait_loader" style="display:none;"> <img src="<?php echo base_url();?>public/images/icon_loading.gif" /></span>
 				<div style="color:#999; margin:5px 0 5px 0;">ควรใช้รูปภาพขนาด 150 x 150 px</div>
-				<input class="cover_img_name1" type="hidden" name="image_shop[]" value="<?php echo $account_avatar = ( ! empty( $show_data->account_avatar ) ) ? $show_data->account_avatar : '' ; ?>">
+				<input class="cover_img_name1" type="hidden" name="image_shop[]" value="<?php echo $account_avatar = ( ! empty( $image_shop[0]->image) ) ? $image_shop[0]->image : '' ; ?>">
 				<span class="image_delete cursor_pointer" style="display:none" >ลบรูป</span>	
 				<br>
 
@@ -33,8 +33,8 @@
 			<div class="overset_image" >
 				
 				<span>
-					<?php if ( !empty( $show_data->account_avatar ) ): ?><br />
-						<div class="account-avatar-wrap border-shop-img2"><img style="max-width: 10em;" src="<?php echo $this->base_url.'public/upload/img_cover/'.$show_data->account_avatar; ?>" alt="<?php echo lang( 'account_avatar' ); ?>" class="account-avatar account-avatar-edit cover-img-tmp2" /></div>
+					<?php if ( !empty( $image_shop[1]->image ) ): ?><br />
+						<div class="account-avatar-wrap border-shop-img2"><img style="max-width: 10em;" src="<?php echo $this->base_url.'public/upload/img_cover/'.$image_shop[1]->image; ?>" alt="<?php echo lang( 'account_avatar' ); ?>" class="account-avatar account-avatar-edit cover-img-tmp2" /></div>
 					<?php else: ?>
 						<div class="account-avatar-wrap border-shop-img2"><img style="max-width: 10em;" src="<?php echo $this->base_url.'public/images/no_image.png'; ?>" alt="<?php echo lang( 'account_avatar' ); ?>" class="account-avatar account-avatar-edit cover-img-tmp2" /></div>
 					<?php endif ?>
@@ -45,7 +45,7 @@
 				<span id="status_expert" style="color:red;"></span>
 				<span class="wait_loader" style="display:none;"> <img src="<?php echo base_url();?>public/images/icon_loading.gif" /></span>
 				<div style="color:#999; margin:5px 0 5px 0;">ควรใช้รูปภาพขนาด 150 x 150 px</div>
-				<input class="cover_img_name2" type="hidden" name="image_shop[]" value="<?php echo $account_avatar = ( ! empty( $show_data->account_avatar ) ) ? $show_data->account_avatar : '' ; ?>">
+				<input class="cover_img_name2" type="hidden" name="image_shop[]" value="<?php echo $account_avatar = ( ! empty( $image_shop[1]->image ) ) ? $image_shop[1]->image : '' ; ?>">
 				<span class="image_delete cursor_pointer" style="display:none" >ลบรูป</span>	
 				<br>
 
@@ -54,8 +54,8 @@
 			<div class="overset_image" >
 				
 				<span>
-					<?php if ( !empty( $show_data->account_avatar ) ): ?><br />
-						<div class="account-avatar-wrap border-shop-img2"><img style="max-width: 10em;" src="<?php echo $this->base_url.'public/upload/img_cover/'.$show_data->account_avatar; ?>" alt="<?php echo lang( 'account_avatar' ); ?>" class="account-avatar account-avatar-edit cover-img-tmp3" /></div>
+					<?php if ( !empty( $image_shop[2]->image ) ): ?><br />
+						<div class="account-avatar-wrap border-shop-img2"><img style="max-width: 10em;" src="<?php echo $this->base_url.'public/upload/img_cover/'.$image_shop[2]->image; ?>" alt="<?php echo lang( 'account_avatar' ); ?>" class="account-avatar account-avatar-edit cover-img-tmp3" /></div>
 					<?php else: ?>
 						<div class="account-avatar-wrap border-shop-img2"><img style="max-width: 10em;" src="<?php echo $this->base_url.'public/images/no_image.png'; ?>" alt="<?php echo lang( 'account_avatar' ); ?>" class="account-avatar account-avatar-edit cover-img-tmp3" /></div>
 					<?php endif ?>
@@ -66,7 +66,7 @@
 				<span id="status_expert" style="color:red;"></span>
 				<span class="wait_loader" style="display:none;"> <img src="<?php echo base_url();?>public/images/icon_loading.gif" /></span>
 				<div style="color:#999; margin:5px 0 5px 0;">ควรใช้รูปภาพขนาด 150 x 150 px</div>
-				<input class="cover_img_name3" type="hidden" name="image_shop[]" value="<?php echo $account_avatar = ( ! empty( $show_data->account_avatar ) ) ? $show_data->account_avatar : '' ; ?>">
+				<input class="cover_img_name3" type="hidden" name="image_shop[]" value="<?php echo $account_avatar = ( ! empty( $image_shop[2]->image ) ) ? $image_shop[2]->image : '' ; ?>">
 				<span class="image_delete cursor_pointer" style="display:none" >ลบรูป</span>	
 				<br>
 
@@ -75,8 +75,8 @@
 			<div class="overset_image" >
 				
 				<span>
-					<?php if ( !empty( $show_data->account_avatar ) ): ?><br />
-						<div class="account-avatar-wrap border-shop-img2"><img style="max-width: 10em;" src="<?php echo $this->base_url.'public/upload/img_cover/'.$show_data->account_avatar; ?>" alt="<?php echo lang( 'account_avatar' ); ?>" class="account-avatar account-avatar-edit cover-img-tmp4" /></div>
+					<?php if ( !empty( $image_shop[3]->image ) ): ?><br />
+						<div class="account-avatar-wrap border-shop-img2"><img style="max-width: 10em;" src="<?php echo $this->base_url.'public/upload/img_cover/'.$image_shop[3]->image; ?>" alt="<?php echo lang( 'account_avatar' ); ?>" class="account-avatar account-avatar-edit cover-img-tmp4" /></div>
 					<?php else: ?>
 						<div class="account-avatar-wrap border-shop-img2"><img style="max-width: 10em;" src="<?php echo $this->base_url.'public/images/no_image.png'; ?>" alt="<?php echo lang( 'account_avatar' ); ?>" class="account-avatar account-avatar-edit cover-img-tmp4" /></div>
 					<?php endif ?>
@@ -87,7 +87,7 @@
 				<span id="status_expert" style="color:red;"></span>
 				<span class="wait_loader" style="display:none;"> <img src="<?php echo base_url();?>public/images/icon_loading.gif" /></span>
 				<div style="color:#999; margin:5px 0 5px 0;">ควรใช้รูปภาพขนาด 150 x 150 px</div>
-				<input class="cover_img_name4" type="hidden" name="image_shop[]" value="<?php echo $account_avatar = ( ! empty( $show_data->account_avatar ) ) ? $show_data->account_avatar : '' ; ?>">
+				<input class="cover_img_name4" type="hidden" name="image_shop[]" value="<?php echo $account_avatar = ( ! empty( $image_shop[3]->image ) ) ? $image_shop[3]->image : '' ; ?>">
 				<span class="image_delete cursor_pointer" style="display:none" >ลบรูป</span>	
 				<br>
 
@@ -105,6 +105,15 @@
 				
 				<span class="cover-img-tmp5" >
 					
+				<?php foreach ( $image_product as $key => $value ): ?>
+					
+					<img alt="" src="<?php echo $this->base_url.'public/upload/img_cover/'.$value->image_product; ?>" style="width: 7em; margin: 10px;">
+					<input class="name_img" type="hidden" value="<?php echo $value->image_product ?>" name="image_product[]">
+				
+				<?php endforeach ?>
+
+
+
 				</span>	
 
 				<span style="display: table-cell; padding-top: 2em;" id="upload_img" href="#" class="btn btn-mini upload_img5">ภาพสินค้า</span> <span class="text-input-icon"></span>
@@ -138,10 +147,16 @@
 			</tr>
 		</thead>
 		<tbody>
+	
+			<?php foreach ( $coupon_list as $key => $value ): ?>
+				
 			<tr>
-				<td>data</td>
-				<td><a href="">Edit</a> | <a href="">Delete</a></td>
+				<td><?php echo $value->name_coupon ?></td>
+				<td><a href="<?php echo site_url( 'index/edit_coupon/'.$value->id ) ?>">Edit</a> | <a href="<?php echo site_url( 'index/delete_coupon/'.$value->id ) ?>">Delete</a></td>
 			</tr>
+
+			<?php endforeach ?>
+
 		</tbody>
 	</table>
 

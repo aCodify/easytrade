@@ -219,6 +219,16 @@ class index extends MY_Controller
 
 		$output['show_data'] = $data;
 
+
+		$this->db->where( 'account_id', $id );
+		$query = $this->db->get( 'account_image_shop' );
+		$output['image_shop'] = $query->result();
+
+		$this->db->where( 'account_id', $id );
+		$query = $this->db->get( 'account_image_product' );
+		$output['image_product'] = $query->result();
+
+
 		$this->generate_page('front/templates/shop/shop_detail_view', $output);
 
 	
@@ -247,6 +257,16 @@ class index extends MY_Controller
 		$query = $this->db->get( 'province' );
 		$output['province_list'] = $query->result();
 
+		$this->db->from( 'account_coupon AS ac' );
+		$this->db->where( 'ac.status', 1 );
+		$this->db->join( 'accounts AS a', 'a.account_id = ac.account_id', 'left' );
+		$this->db->where( 'a.type', $id );
+		$query = $this->db->get();
+		$output['data_list'] = $query->result();
+
+
+
+
 		$this->generate_page('front/templates/coupon/index_coupon_view', $output);
 	
 	} // END FUNCTION coupon
@@ -269,12 +289,59 @@ class index extends MY_Controller
 		$output = '';
 		$output['hover_menu'] = '';
 
+		$data_account = $this->account_model->get_account_cookie( 'member' );
+
+		if ( empty( $data_account ) ) 
+		{
+			redirect( site_url() );
+		}
+
 		if ( $this->input->post() ) 
 		{
-			echo '<pre>';
-			print_r( $this->input->post() );
-			echo '</pre>';
+
+
+			$image_shop = $this->input->post('image_shop');
+			$image_product = $this->input->post('image_product');
+		
+			$this->db->where( 'account_id', $data_account['id'] );	
+			$this->db->delete( 'account_image_shop' );
+
+			$this->db->where( 'account_id', $data_account['id'] );	
+			$this->db->delete( 'account_image_product' );
+
+			foreach ( $image_shop as $key => $value ) 
+			{
+				$this->db->set( 'account_id', $data_account['id'] );
+				$this->db->set( 'image', $value );
+				$this->db->insert( 'account_image_shop' );
+			}
+
+			if ( ! empty( $image_product ) ) 
+			{
+				foreach ( $image_product as $key => $value ) 
+				{
+					$this->db->set( 'account_id', $data_account['id'] );
+					$this->db->set( 'image_product', $value );
+					$this->db->insert( 'account_image_product' );
+				}
+			}
+
 		}
+
+
+
+		$this->db->where( 'account_id', $data_account['id'] );
+		$query = $this->db->get( 'account_image_shop' );
+		$output['image_shop'] = $query->result();
+
+		$this->db->where( 'account_id', $data_account['id'] );
+		$query = $this->db->get( 'account_image_product' );
+		$output['image_product'] = $query->result();
+
+
+		$this->db->where( 'account_id', $data_account['id'] );
+		$query = $this->db->get( 'account_coupon' );
+		$output['coupon_list'] = $query->result();
 
 		$this->generate_page('front/templates/account/my_shop_view', $output);	
 	
@@ -287,28 +354,199 @@ class index extends MY_Controller
 
 		$output['hover_menu'] = '';
 
+		$data_account = $this->account_model->get_account_cookie( 'member' );
+
+		if ( empty( $data_account ) ) 
+		{
+			redirect( site_url() );
+		}
+
+		$id = $data_account['id'];
+
 		if ( $this->input->post() ) 
 		{
-			echo '<pre>';
-			print_r( $this->input->post() );
-			echo '</pre>';
+			
+			/**
+			*
+			*** START ADD CONTENT
+			*
+			**/
+				// CHECK ID EMPTY
+				if ( empty( $id ) ) 
+				{
+					$error_validation[] = 'System error , Please try again';
+				}
+
+
+				$data_post = $this->input->post();
+
+
+		 		$array_validation = array( "image_coupon" => "Image coupon", "name_coupon" => "Name coupon", "discount" => "Discount", "detail" => "Detail", "start_date" => "Start date", "end_date" => "End date" );
+
+		 		foreach ( $array_validation as $key => $value ) 
+		 		{
+
+		 			// AND is_array_empty( $this->input->post( $key )
+		 			if ( ! $this->input->post( $key )  ) 
+		 			{
+		 				$error_validation[] = 'Please enter information '.$array_validation[ $key ];
+		 			}
+		 			else if ( is_array( $this->input->post( $key ) ) ) 
+		 			{
+		 				$set_error = is_array_empty_validate( $this->input->post( $key ) );
+
+		 				foreach ( $set_error as $key_lang => $value_lang ) 
+	 					{
+	 						$error_validation[] = 'Please enter information '.$array_validation[ $key ].' for language '.$this->lang_model->get_name_lang( $value_lang );
+	 					}	
+		 			}
+
+		 		}	
+
+		 		if ( ! empty( $error_validation )  ) 
+		 		{
+		 			$output['show_data'] = json_decode(json_encode( $this->input->post() ), FALSE);
+		 			$output[ 'error' ] = preview_error( $error_validation );
+		 		}
+		 		else
+		 		{
+		 			$data_post['account_id'] = $id;
+		 			$data_post['start_date'] = strtotime( reset_format_date($data_post['start_date']) );
+		 			$data_post['end_date'] = strtotime( reset_format_date($data_post['end_date']) ); 
+		 			$this->db->insert( 'account_coupon', $data_post );
+
+					$this->session->set_flashdata( 'form_status', preview_success() );
+					redirect( 'index/my_shop/'.$id );
+		 		}
+			
+			/** END ADD CONTENT **/
+			
+			// -------------------------------------
+
+
+
 		}
 
 		$this->generate_page('front/templates/coupon/form_coupon_view', $output);		
 	
 	} // END FUNCTION add_coupon
 
-	public function edit_coupon( $id = '' )
+	public function edit_coupon( $id_coupon = '' )
 	{
+
+		$output = '';
+
+		$output['hover_menu'] = '';
+
+		$data_account = $this->account_model->get_account_cookie( 'member' );
+
+		if ( empty( $data_account ) ) 
+		{
+			redirect( site_url() );
+		}
+
+		$id = $data_account['id'];
+
+		if ( $this->input->post() ) 
+		{
+			
+			/**
+			*
+			*** START ADD CONTENT
+			*
+			**/
+				// CHECK ID EMPTY
+				if ( empty( $id ) ) 
+				{
+					$error_validation[] = 'System error , Please try again';
+				}
+
+
+				$data_post = $this->input->post();
+
+
+		 		$array_validation = array( "image_coupon" => "Image coupon", "name_coupon" => "Name coupon", "discount" => "Discount", "detail" => "Detail", "start_date" => "Start date", "end_date" => "End date" );
+
+		 		foreach ( $array_validation as $key => $value ) 
+		 		{
+
+		 			// AND is_array_empty( $this->input->post( $key )
+		 			if ( ! $this->input->post( $key )  ) 
+		 			{
+		 				$error_validation[] = 'Please enter information '.$array_validation[ $key ];
+		 			}
+		 			else if ( is_array( $this->input->post( $key ) ) ) 
+		 			{
+		 				$set_error = is_array_empty_validate( $this->input->post( $key ) );
+
+		 				foreach ( $set_error as $key_lang => $value_lang ) 
+	 					{
+	 						$error_validation[] = 'Please enter information '.$array_validation[ $key ].' for language '.$this->lang_model->get_name_lang( $value_lang );
+	 					}	
+		 			}
+
+		 		}	
+
+		 		if ( ! empty( $error_validation )  ) 
+		 		{
+		 			$output['show_data'] = json_decode(json_encode( $this->input->post() ), FALSE);
+		 			$output[ 'error' ] = preview_error( $error_validation );
+		 		}
+		 		else
+		 		{
+		 			
+		 			$data_post['start_date'] = strtotime( reset_format_date($data_post['start_date']) );
+		 			$data_post['end_date'] = strtotime( reset_format_date($data_post['end_date']) ); 
+		 			$this->db->where( 'account_id', $id );
+		 			$this->db->where( 'id', $id_coupon );
+		 			$this->db->update( 'account_coupon', $data_post );
+
+					$this->session->set_flashdata( 'form_status', preview_success() );
+					redirect( 'index/my_shop/'.$id );
+		 		}
+			
+			/** END ADD CONTENT **/
+			
+			// -------------------------------------
+
+
+
+		}
+		else
+		{
+			$this->db->where( 'account_id', $id );
+			$this->db->where( 'id', $id_coupon );
+			$query = $this->db->get( 'account_coupon' );
+			$output['show_data'] = $query->row();
+
+
+			$output['show_data']->start_date = date( 'd/m/Y' , $output['show_data']->start_date );
+
+			$output['show_data']->end_date = date( 'd/m/Y' , $output['show_data']->end_date );
+		}
+
 	
-		# code...
+		$this->generate_page('front/templates/coupon/form_coupon_view', $output);	
 	
 	} // END FUNCTION add_coupon
 
 	public function delete_coupon( $id = '' )
 	{
 	
-		# code...
+		$data_account = $this->account_model->get_account_cookie( 'member' );
+
+		if ( empty( $data_account ) ) 
+		{
+			redirect( site_url() );
+		}
+
+		$account_id = $data_account['id'];
+
+		$this->db->where( 'id', $id );
+		$this->db->where( 'account_id', $account_id );
+		$this->db->delete( 'account_coupon' );
+
+		redirect( 'index/my_shop/'.$account_id );
 	
 	} // END FUNCTION add_coupon
 

@@ -12,96 +12,35 @@
 </h4>
 <hr>
 
-	<div id="coupon-body"> 
-		<div class="left-color">
-		</div>
-		<div style="float: left; padding: 10px;" >
-                <img src="http://placehold.it/180x180" alt="">
-        </div>
-        <div class="coupon-head">	
-			<h4>ร้านบ้านสวย</h4>
-			<span>แหล่งรวมสินค้านำเข้า</span>
-			<hr>
-		</div>
-		<div class="coupon-percent">
-                <h4>ส่วนลด</h4>
-                <h1 style="font-size: 4em;" >15%</h1>
-		</div>
-		<div class="coupon-text">
-			<span>เมื่อซื้อสินค้าครบ 5,000 บาท รับส่วนลดทันที 15%</span>
-		</div>
-		<div class="coupon-date">
-			เริ่ม 10/01/2557 &nbsp;&nbsp;&nbsp; สิ้นสุด 31/01/2557
-		</div>
-	</div>
+	<?php foreach ( $data_list as $key => $value ): ?>
+		
 
 	<div id="coupon-body"> 
 		<div class="left-color">
 		</div>
 		<div style="float: left; padding: 10px;" >
-                <img src="http://placehold.it/180x180" alt="">
+            <img src="<?php echo $this->base_url.'public/upload/img_cover/'.$value->image_coupon; ?>" style="width: 180px; height: 180px;" alt="">
         </div>
         <div class="coupon-head">	
-			<h4>ร้านบ้านสวย</h4>
-			<span>แหล่งรวมสินค้านำเข้า</span>
+			<h4><?php echo $value->name_shop ?></h4>
+			<span><?php echo $value->detail ?></span>
 			<hr>
 		</div>
 		<div class="coupon-percent">
                 <h4>ส่วนลด</h4>
-                <h1 style="font-size: 4em;" >15%</h1>
+                <h1 style="font-size: 4em;" ><?php echo $value->discount ?>%</h1>
 		</div>
 		<div class="coupon-text">
-			<span>เมื่อซื้อสินค้าครบ 5,000 บาท รับส่วนลดทันที 15%</span>
+			<span><?php echo $value->name_coupon ?></span>
 		</div>
 		<div class="coupon-date">
-			เริ่ม 10/01/2557 &nbsp;&nbsp;&nbsp; สิ้นสุด 31/01/2557
+			เริ่ม <?php echo date( 'd/m/Y' , $value->start_date ) ?> &nbsp;&nbsp;&nbsp; สิ้นสุด <?php echo date( 'd/m/Y' , $value->end_date ) ?>
 		</div>
 	</div>
 
-	<div id="coupon-body"> 
-		<div class="left-color">
-		</div>
-		<div style="float: left; padding: 10px;" >
-                <img src="http://placehold.it/180x180" alt="">
-        </div>
-        <div class="coupon-head">	
-			<h4>ร้านบ้านสวย</h4>
-			<span>แหล่งรวมสินค้านำเข้า</span>
-			<hr>
-		</div>
-		<div class="coupon-percent">
-                <h4>ส่วนลด</h4>
-                <h1 style="font-size: 4em;" >15%</h1>
-		</div>
-		<div class="coupon-text">
-			<span>เมื่อซื้อสินค้าครบ 5,000 บาท รับส่วนลดทันที 15%</span>
-		</div>
-		<div class="coupon-date">
-			เริ่ม 10/01/2557 &nbsp;&nbsp;&nbsp; สิ้นสุด 31/01/2557
-		</div>
-	</div>
+	<?php endforeach ?>
 
-	<div id="coupon-body"> 
-		<div class="left-color">
-		</div>
-		<div style="float: left; padding: 10px;" >
-                <img src="http://placehold.it/180x180" alt="">
-        </div>
-        <div class="coupon-head">	
-			<h4>ร้านบ้านสวย</h4>
-			<span>แหล่งรวมสินค้านำเข้า</span>
-			<hr>
-		</div>
-		<div class="coupon-percent">
-                <h4>ส่วนลด</h4>
-                <h1 style="font-size: 4em;" >15%</h1>
-		</div>
-		<div class="coupon-text">
-			<span>เมื่อซื้อสินค้าครบ 5,000 บาท รับส่วนลดทันที 15%</span>
-		</div>
-		<div class="coupon-date">
-			เริ่ม 10/01/2557 &nbsp;&nbsp;&nbsp; สิ้นสุด 31/01/2557
-		</div>
-	</div>
+
+
 
 </div>
