@@ -55,28 +55,36 @@ $data_type = $query->row();
 
 
 
-    <h4>คูปองส่วนลด</h4>
+    <h4 onclick="printthis()" >คูปองส่วนลด</h4>
     
-    <div class="events-list events-page">
-
-        <section class="event">
-            <div class="date">
-              <!--   <strong>11</strong>
-                <span class="month">Oct</span>
-                <span class="details"></span> -->
-            </div>
-            <div class="details" style="min-height: 9em;">
-                <h1><a href="#">ส่วนลดส่งท้ายปี 15%</a></h1>
-                <span>เมื่อซื้อสินค้า ตั้งแต่ 5,000 บาท ขึ้นไป รับส่วนลดทันที 15 %</span>
-                <div class="buttons">
-                    เริ่ม 10/01/2557 &nbsp;&nbsp;&nbsp; สิ้นสุด 31/01/2557
-                </div>
-
-
-            </div>
-        </section>
-
+    <?php foreach ( $coupon_list as $key => $value ): ?>
+        
+    <a href="<?php echo site_url('index/shop_detail/'.$value->account_id) ?>">
+    <div id="coupon-body"> 
+        <div class="left-color">
+        </div>
+        <div style="float: left; padding: 10px;" >
+            <img src="<?php echo $this->base_url.'public/upload/img_cover/'.$value->image_coupon; ?>" style="width: 180px; height: 180px;" alt="">
+        </div>
+        <div class="coupon-head">   
+            <h4><?php echo $value->name_shop ?></h4>
+            <span><?php echo $value->detail ?></span>
+            <hr>
+        </div>
+        <div class="coupon-percent">
+                <h4>ส่วนลด</h4>
+                <h1 style="font-size: 4em;" ><?php echo $value->discount ?>%</h1>
+        </div>
+        <div class="coupon-text">
+            <span><?php echo $value->name_coupon ?></span>
+        </div>
+        <div class="coupon-date">
+            เริ่ม <?php echo date( 'd/m/Y' , $value->start_date ) ?> &nbsp;&nbsp;&nbsp; สิ้นสุด <?php echo date( 'd/m/Y' , $value->end_date ) ?>
+        </div>
     </div>
+    </a>
+
+    <?php endforeach ?>
 
     <hr>
 
@@ -117,3 +125,28 @@ $data_type = $query->row();
 
 </content>
 </div>
+
+
+<script>
+    
+
+function printthis()
+{
+
+     var w = window.open('<?php echo site_url( "index/page_print/".$shop_id ) ?>', '', 'width=800,height=600,resizeable,scrollbars');
+     // w.document.write($("#printthis").html());
+
+if ( w ) {
+    w.onload = function() {
+        // Do stuff
+         w.document.close(); // needed for chrome and safari
+         javascript:w.print();
+         w.close();
+    };
+}
+
+     return false;
+
+}
+
+</script>

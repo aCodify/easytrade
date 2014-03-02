@@ -1,28 +1,31 @@
 <div class="col-md-12">
 
 
-<h4>ร้านค้า : <span style="color:#E74C3C"><?php echo $type->name_shop ?></span></h4>
-<select name="province" class="span3 province">
+<h4>
+    ร้านค้า : <span style="color:#E74C3C"><?php echo $type->name_shop ?></span>
+    <select name="province" class="span3 province">
 
 
-    <option value="">ทุกจังหวัด</option>
-    <?php foreach ( $province_list as $key => $value ): ?>
-        <?php 
+        <option value="">ทุกจังหวัด</option>
+        <?php foreach ( $province_list as $key => $value ): ?>
+            <?php 
 
-        if ( $this->input->get( 'province' ) )  
-        {
-            $id_province = $this->input->get( 'province' );
-        }
-        else
-        {
-            $id_province = '';  
-        }
+            if ( $this->input->get( 'province' ) )  
+            {
+                $id_province = $this->input->get( 'province' );
+            }
+            else
+            {
+                $id_province = '';  
+            }
 
 
-        ?>        
-        <option <?php echo $select = ( $id_province == $value->id ) ? 'selected' : '' ; ?> value="<?php echo $value->id ?>"><?php echo $value->name_province ?></option>
-    <?php endforeach ?>
-</select>
+            ?>        
+            <option <?php echo $select = ( $id_province == $value->id ) ? 'selected' : '' ; ?> value="<?php echo $value->id ?>"><?php echo $value->name_province ?></option>
+        <?php endforeach ?>
+    </select>
+
+</h4>    
 <hr>
 <content>
 

@@ -203,6 +203,9 @@ class index extends MY_Controller
 
 	public function shop_detail( $id = '' )
 	{
+
+		$output['shop_id'] = $id;
+
 		$output['hover_menu'] = 'SHOP';
 		if ( empty( $id ) ) 
 		{
@@ -229,6 +232,27 @@ class index extends MY_Controller
 		$output['image_product'] = $query->result();
 
 
+
+		/**
+		*
+		*** START get data coupon
+		*
+		**/
+		
+		$this->db->from( 'account_coupon AS ac' );
+		$this->db->where( 'ac.status', 1 );
+		$this->db->join( 'accounts AS a', 'a.account_id = ac.account_id', 'left' );
+		$this->db->where( 'a.account_id', $id );
+
+		$query = $this->db->get();
+		$output['coupon_list'] = $query->result();
+		
+		/** END get data coupon **/
+		
+		// -------------------------------------
+		
+
+
 		$this->generate_page('front/templates/shop/shop_detail_view', $output);
 
 	
@@ -252,6 +276,8 @@ class index extends MY_Controller
 	
 		$output = '';
 
+		$output['id_coupon'] = $id;
+
 		$output['hover_menu'] = 'COUPON';
 
 		$query = $this->db->get( 'province' );
@@ -261,11 +287,14 @@ class index extends MY_Controller
 		$this->db->where( 'ac.status', 1 );
 		$this->db->join( 'accounts AS a', 'a.account_id = ac.account_id', 'left' );
 		$this->db->where( 'a.type', $id );
+
+		if ( $this->input->get( 'province' ) ) 
+		{
+			$this->db->where( 'province', (int)$this->input->get( 'province' ) );
+		}
+
 		$query = $this->db->get();
 		$output['data_list'] = $query->result();
-
-
-
 
 		$this->generate_page('front/templates/coupon/index_coupon_view', $output);
 	
@@ -551,5 +580,59 @@ class index extends MY_Controller
 	} // END FUNCTION add_coupon
 
 
+
+	public function page_print( $id = '' )
+	{
+	
+		$output['hover_menu'] = 'SHOP';
+		if ( empty( $id ) ) 
+		{
+			redirect( site_url() );
+		}
+
+		$this->db->where( 'account_id', $id );
+		$this->db->set( 'count_view', 'count_view+1', false );
+		$this->db->update( 'accounts' );
+
+		$this->db->where( 'account_id', $id );
+		$query = $this->db->get( 'accounts' );
+		$data = $query->row();
+
+		$output['show_data'] = $data;
+
+
+		$this->db->where( 'account_id', $id );
+		$query = $this->db->get( 'account_image_shop' );
+		$output['image_shop'] = $query->result();
+
+		$this->db->where( 'account_id', $id );
+		$query = $this->db->get( 'account_image_product' );
+		$output['image_product'] = $query->result();
+
+
+
+		/**
+		*
+		*** START get data coupon
+		*
+		**/
+		
+		$this->db->from( 'account_coupon AS ac' );
+		$this->db->where( 'ac.status', 1 );
+		$this->db->join( 'accounts AS a', 'a.account_id = ac.account_id', 'left' );
+		$this->db->where( 'a.account_id', $id );
+
+		$query = $this->db->get();
+		$output['coupon_list'] = $query->result();
+		
+		/** END get data coupon **/
+		
+		// -------------------------------------
+		
+
+
+		$this->generate_page('front/templates/shop/page_print_view', $output);
+	
+	} // END FUNCTION page_print
 	
 }
