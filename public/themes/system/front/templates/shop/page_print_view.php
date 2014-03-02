@@ -10,52 +10,7 @@ $data_type = $query->row();
 
 <content>
 
-    <div class="row content-row">
-                        
-        <h4>&nbsp;&nbsp;&nbsp;&nbsp;บรรยากาศภายในร้าน</h4>
-
-        <?php foreach ( $image_shop as $key => $value ): ?>
-            
-            <div class="col-md-3 box-page-shop" >
-                <div class="album-wrap">
-
-                    <?php if ( ! empty( $value->image ) ): ?>
-                        <a href=""><img alt="demo image" style="max-height: 10em;" src="<?php echo $this->base_url.'public/upload/img_cover/'.$value->image; ?>"></a>
-                    <?php else: ?>
-                        <!-- <a href=""><img alt="demo image" src="http://placehold.it/200x200"></a> -->
-                    <?php endif ?>
-                </div>
-            </div>
-
-        <?php endforeach ?>
-
-    </div>
-
-    <div class="row content-row"> 
-
-        <h4>&nbsp;&nbsp;&nbsp;&nbsp;สินค้าแนะนำ</h4>
-
-        <?php foreach ( $image_product as $key => $value ): ?>
-            
-            <div class="col-md-3 box-page-shop" >
-                <div class="album-wrap">
-
-                    <?php if ( ! empty( $value->image_product ) ): ?>
-                        <a href=""><img alt="demo image" style="max-height: 10em;" src="<?php echo $this->base_url.'public/upload/img_cover/'.$value->image_product; ?>"></a>
-                    <?php else: ?>
-                        <!-- <a href=""><img alt="demo image" src="http://placehold.it/200x200"></a> -->
-                    <?php endif ?>
-                </div>
-            </div>
-
-        <?php endforeach ?>
-
-    </div>
-
-
-
-
-    <h4 onclick="printthis()" >คูปองส่วนลด ( Print Coupon Click )</h4>
+    <h4>คูปองส่วนลด</h4>
     
     <?php foreach ( $coupon_list as $key => $value ): ?>
         
@@ -125,28 +80,3 @@ $data_type = $query->row();
 
 </content>
 </div>
-
-
-<script>
-    
-
-function printthis()
-{
-
-     var w = window.open('<?php echo site_url( "index/page_print/".$shop_id ) ?>', '', 'width=800,height=600,resizeable,scrollbars');
-     // w.document.write($("#printthis").html());
-
-if ( w ) {
-    w.onload = function() {
-        // Do stuff
-         w.document.close(); // needed for chrome and safari
-         javascript:w.print();
-         w.close();
-    };
-}
-
-     return false;
-
-}
-
-</script>
