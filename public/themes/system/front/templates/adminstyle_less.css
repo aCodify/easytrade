@@ -112,3 +112,20 @@
 .form_coupon input.persen.span4 {
   width: 35em;
 }
+.user_box {
+  border-color: #DC2222;
+  border-radius: 6px;
+  border-style: solid;
+  border-width: 2px;
+  color: #FFFFFF;
+  display: inline-block;
+  float: right;
+  font-size: 20px;
+  padding: 10px;
+}
+.user_box a {
+  color: #FFFFFF;
+}
+.user_box span {
+  color: #E74C3C;
+}

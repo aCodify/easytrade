@@ -59,7 +59,31 @@
     <!-- BEGIN banner area -->
 
     <div class="top-banner-area">
-        <a href="#"><img src="<?php echo $this->theme_path; ?>images/logo_web.png" alt="Logo"></a>
+        <a href="#">
+            <img src="<?php echo $this->theme_path; ?>images/logo_web.png" alt="Logo">
+        </a>
+
+        <?php 
+
+            $data_account = $this->account_model->get_account_cookie( 'member' );
+
+            $this->db->where( 'account_id', $data_account['id'] );
+
+            $query = $this->db->get( 'accounts' );
+
+            $data = $query->row();
+
+        ?>
+    
+        <?php if ( ! empty( $data_account ) ): ?>
+
+        <div class="user_box" >
+            ร้าน : <span><?php echo $data->name_shop ?></span><br>
+            <a href="<?php echo site_url( 'index/my_shop/'.$data_account['id'] ) ?>">แก้ไขร้านค้า</a> / <a href="<?php echo site_url( 'index/add_coupon' ) ?>">เพิ่มคูปอง</a>
+        </div>
+
+        <?php endif ?>
+
     </div>
 
     <!-- END banner area -->
