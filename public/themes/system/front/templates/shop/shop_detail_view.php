@@ -20,7 +20,7 @@ $data_type = $query->row();
                 <div class="album-wrap">
 
                     <?php if ( ! empty( $value->image ) ): ?>
-                        <a href=""><img alt="demo image" style="max-height: 10em;" src="<?php echo $this->base_url.'public/upload/img_cover/'.$value->image; ?>"></a>
+                        <a class="fancybox" href="<?php echo $this->base_url.'public/upload/img_cover/'.$value->image; ?>"><img alt="demo image" style="max-height: 10em;" src="<?php echo $this->base_url.'public/upload/img_cover/'.$value->image; ?>"></a>
                     <?php else: ?>
                         <!-- <a href=""><img alt="demo image" src="http://placehold.it/200x200"></a> -->
                     <?php endif ?>
@@ -41,7 +41,7 @@ $data_type = $query->row();
                 <div class="album-wrap">
 
                     <?php if ( ! empty( $value->image_product ) ): ?>
-                        <a href=""><img alt="demo image" style="max-height: 10em;" src="<?php echo $this->base_url.'public/upload/img_cover/'.$value->image_product; ?>"></a>
+                        <a class="fancybox" href="<?php echo $this->base_url.'public/upload/img_cover/'.$value->image_product; ?>"><img alt="demo image" style="max-height: 10em;" src="<?php echo $this->base_url.'public/upload/img_cover/'.$value->image_product; ?>"></a>
                     <?php else: ?>
                         <!-- <a href=""><img alt="demo image" src="http://placehold.it/200x200"></a> -->
                     <?php endif ?>
@@ -148,5 +148,28 @@ if ( w ) {
      return false;
 
 }
+
+
+
+jQuery(document).ready(function($) {
+    
+
+    $(".fancybox").fancybox({
+        fitToView   : false,
+        autoSize    : false,
+        closeClick  : false,
+        openEffect  : 'fade',
+        closeEffect : 'fade',
+        helpers : {
+            overlay: {
+                css : {
+                    'background' : 'rgba(0, 0, 0, 0.8)'
+                }
+            }
+        }
+    });
+
+});
+
 
 </script>

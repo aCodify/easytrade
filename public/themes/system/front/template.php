@@ -19,6 +19,7 @@
         <link href="<?php echo $this->theme_path; ?>font-awesome.css" rel="stylesheet">
         <link href="<?php echo $this->theme_path; ?>js/swiperjs/idangerous.swiper.css" rel="stylesheet">
         <link href="<?php echo $this->theme_path; ?>front/templates/adminstyle_less.css" rel="stylesheet">
+        <link rel="stylesheet" href="<?php echo $this->theme_path; ?>js/fancybox/source/jquery.fancybox.css">
 
     
 
@@ -34,6 +35,7 @@
 
     <script type="text/javascript" src="<?php echo $this->theme_path; ?>js/jquery-ui-1.10.3.min.js"></script>
     <script type="text/javascript" src="<?php echo $this->theme_path; ?>js/custom.js"></script>
+    <script type="text/javascript" src="<?php echo $this->theme_path; ?>js/fancybox/source/jquery.fancybox.js"></script>
     <script type="text/javascript" src="<?php echo $this->theme_path; ?>js/jplayer/jquery.jplayer.min.js"></script>
     <script type="text/javascript" src="<?php echo $this->theme_path; ?>js/swiperjs/idangerous.swiper.js"></script>
     <script src="<?php echo $this->theme_path; ?>js/modernizr-2.5.3.min.js"></script>
@@ -125,6 +127,11 @@
                         </li>
                         <li <?php echo $hover = ( $hover_menu == 'CONTACT US' ) ? 'class="current-item"' : '' ; ?> >
                             <a href="<?php echo site_url( 'index/contact' ) ?>">CONTACT US</a>
+                        </li>
+
+
+                        <li <?php echo $hover = ( $hover_menu == 'test' ) ? 'class="current-item"' : '' ; ?> >
+                            <a href="<?php echo site_url( 'index/test' ) ?>">test</a>
                         </li>
   
                     

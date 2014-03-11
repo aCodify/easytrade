@@ -5,7 +5,9 @@
 
                         <div class="bb-slider-2 bluebox-slider" data-direction-nav=".arrow-links-wrap" data-control-nav=".slider-control-nav">
                             <div class="swiper-slide set_header">
-                                <img src="public/images/banner01.jpg" class=" img-preload" alt="sample image" data-aspectratio="1.3333" id="img-52552406dfa3e">
+
+                                <?php $image_banner = ( ! empty( $image_banner->image ) ) ? base_url( 'public/upload/img_cover/'.$image_banner->image ) : base_url('public/images/banner01.jpg') ; ?>
+                                <img src="<?php echo $image_banner ?>" class=" img-preload" alt="sample image" data-aspectratio="1.3333" id="img-52552406dfa3e">
                                 <div class="slider-caption">
                                     <!-- <h4>
                                         <a href="#"><span>Banda - HTML5 Music Magazine<span></span></span></a>

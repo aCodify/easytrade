@@ -129,7 +129,11 @@ class index extends MY_Controller
 		$output['latest_shop'] = $query->result();
 
 
+		$this->db->order_by('id', 'RANDOM');
+		$query = $this->db->get( 'banner' );
+		$data = $query->row();
 
+		$output['image_banner'] = $data;
 
 
 
@@ -634,5 +638,19 @@ class index extends MY_Controller
 		$this->generate_page('front/templates/shop/page_print_view', $output);
 	
 	} // END FUNCTION page_print
+
+
+
+
+	public function test()
+	{
+		$output = '';
+		$output['hover_menu'] = 'test';
+
+		$this->generate_page( 'test' , $output );
+	} // END FUNCTION FunctionName
+
+
+
 	
 }

@@ -52,6 +52,26 @@ class index extends admin_controller
 		$output = '';
 		$output['page_title'] = $this->html_model->gen_title($this->lang->line('admin_home'));
 
+		if ( $this->input->post() ) 
+		{
+
+			$this->db->truncate('banner'); 
+
+			$data_post = $this->input->post();
+
+			foreach ( $data_post['image'] as $key => $value ) 
+			{
+				$this->db->set( 'image', $value );
+				$this->db->insert( 'banner' );
+			}
+
+		}
+
+		$query = $this->db->get( 'banner' );
+		$data = $query->result();
+
+		$output['list_image'] = $data;
+
 		$this->generate_page('site-admin/templates/index/banner_view', $output);
 	
 	} // END FUNCTION banner
